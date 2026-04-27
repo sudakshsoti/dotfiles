@@ -1,0 +1,11 @@
+font-family = MonoLisa Nerd Font
+adjust-cell-height = 10%
+font-size = 13
+font-style = Medium
+theme = vesper-dimmed
+background-opacity = 0.95
+window-padding-x = 12
+window-padding-y = 12
+cursor-style = bar
+background-opacity = 1
+background-blur = false

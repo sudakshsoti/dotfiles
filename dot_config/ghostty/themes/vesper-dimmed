@@ -1,0 +1,23 @@
+background = 181614
+foreground = E8E5DF
+cursor-color = FFC799
+cursor-text = 181614
+selection-background = 2F2C29
+selection-foreground = E8E5DF
+
+palette = 0=#181614
+palette = 1=#FF8080
+palette = 2=#99FFE4
+palette = 3=#FFC799
+palette = 4=#99FFE4
+palette = 5=#FFC799
+palette = 6=#99FFE4
+palette = 7=#A0A0A0
+palette = 8=#404040
+palette = 9=#FF8080
+palette = 10=#99FFE4
+palette = 11=#FFC799
+palette = 12=#99FFE4
+palette = 13=#FFC799
+palette = 14=#99FFE4
+palette = 15=#E8E5DF

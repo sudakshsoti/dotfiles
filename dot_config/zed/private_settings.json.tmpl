@@ -1,0 +1,144 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "edit_predictions": {
+    "provider": "zed"
+  },
+  "project_panel": {
+    "dock": "left",
+  },
+  "context_servers": {
+    "chrome-devtools-mcp-zed": {
+      "enabled": true,
+      "remote": false,
+      "settings": {
+        "browser_url": null,
+        "ws_endpoint": null,
+        "ws_headers": null,
+        "auto_connect": null,
+        "channel": null,
+        "headless": null,
+        "isolated": null,
+        "user_data_dir": null,
+        "viewport": null,
+        "executable_path": null,
+        "chrome_arg": [],
+        "proxy_server": null,
+        "accept_insecure_certs": null,
+        "category_emulation": null,
+        "category_performance": null,
+        "category_network": null,
+        "log_file": null,
+        "extra_args": [],
+      },
+    },
+  },
+  "title_bar": {
+    "show_branch_status_icon": true,
+  },
+  "agent": {
+    "dock": "right",
+    "tool_permissions": {
+      "default": "allow",
+      "tools": {},
+    },
+    "favorite_models": [],
+    "play_sound_when_agent_done": "always",
+    "model_parameters": [],
+    "commit_message_model": {
+      "provider": "google",
+      "model": "gemini-3-flash"
+    },
+    "thread_summary_model": {
+      "provider": "google",
+      "model": "gemini-3-flash"
+    }
+  },
+  "ui_font_family": "Atkinson Hyperlegible",
+  "ui_font_size": 16,
+  "buffer_font_family": "MonoLisa Nerd Font",
+  "buffer_font_weight": 450,
+  "buffer_font_size": 13,
+  "terminal": {
+    "copy_on_select": true,
+    "cursor_shape": "bar",
+    "font_family": "MonoLisa Nerd Font",
+    "font_size": 13.0,
+    "font_weight": 500,
+    "dock": "right",
+  },
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "autosave": "on_focus_change",
+  "soft_wrap": "editor_width",
+  "agent_servers": {
+    "gemini": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "favorite_config_option_values": {
+        "mode": ["plan", "bypassPermissions"],
+      },
+      "default_config_options": {
+        "model": "opusplan",
+      },
+      "type": "registry",
+    },
+  },
+  "icon_theme": {
+    "mode": "light",
+    "light": "Phosphor Icons Theme",
+    "dark": "Colored Zed Icons Theme Dark"
+  },
+  "base_keymap": "VSCode",
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Modern Vesper"
+  },
+  "theme_overrides": {
+    "Modern Vesper": {
+      "editor.foreground": "#E8E5DF",
+      "text": "#E8E5DF",
+      "text.muted": "#9A968F",
+      "background": "#181614",
+      "editor.background": "#181614",
+      "editor.gutter.background": "#181614",
+      "panel.background": "#181614",
+      "tab_bar.background": "#181614",
+      "title_bar.background": "#181614",
+      "status_bar.background": "#181614",
+      "toolbar.background": "#181614",
+      "terminal.background": "#181614"
+    }
+  },
+  "language_models": {
+    "google": {
+      "api_key": "{{ .zedGoogleApiKey }}",
+      "available_models": [
+        {
+          "name": "gemini-3.1-flash-lite",
+          "display_name": "Gemini 3.1 Flash-Lite (Fastest)",
+          "max_tokens": 1000000
+        },
+        {
+          "name": "gemini-3-flash",
+          "display_name": "Gemini 3 Flash (Recommended)",
+          "max_tokens": 1000000
+        },
+        {
+          "name": "gemini-3.1-pro",
+          "display_name": "Gemini 3.1 Pro (Flagship)",
+          "max_tokens": 1000000
+        }
+      ]
+    }
+  }
+}
