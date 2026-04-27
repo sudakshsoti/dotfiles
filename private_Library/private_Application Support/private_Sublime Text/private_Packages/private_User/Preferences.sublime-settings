@@ -1,6 +1,6 @@
 {   
     "font_face": "MonoLisa",
-    "color_scheme": "Packages/ayu/ayu-mirage.sublime-color-scheme",
+    "color_scheme": "Vesper Dimmed.sublime-color-scheme",
     "font_size": 13,
     "font_options": ["gray_antialias", "subpixel_antialias", "liga"],
     "index_files": true,
@@ -8,5 +8,5 @@
     [
 		"Vintage",
     ],
-    "theme": "ayu-mirage.sublime-theme",
+    "theme": "Adaptive.sublime-theme",
 }
