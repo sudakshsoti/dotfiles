@@ -5,7 +5,7 @@
         "bg": "#181614",
         "fg": "#E8E5DF",
         "muted": "#9A968F",
-        "subtle": "#A0A0A0",
+        "subtle": "#6F6A62",
         "orange": "#FFC799",
         "aqua": "#99FFE4",
         "red": "#FF8080",
@@ -29,7 +29,7 @@
         "find_highlight": "var(orange)",
         "find_highlight_foreground": "var(bg)",
         "accent": "var(orange)",
-        "popup_css": "html { background-color: #1C1A17; color: #E8E5DF; }"
+        "popup_css": "html { background-color: #1C1A17; color: #E8E5DF; border: 1px solid #2A2724; }"
     },
     "rules": [
         { "scope": "comment, punctuation.definition.comment", "foreground": "var(subtle)", "font_style": "italic" },

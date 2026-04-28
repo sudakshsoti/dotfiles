@@ -60,8 +60,13 @@
       "model": "gemini-3-flash"
     }
   },
-  "ui_font_family": "Atkinson Hyperlegible",
-  "ui_font_size": 16,
+  "ui_font_family": "Inter",
+  "ui_font_size": 15.0,
+  "agent_ui_font_size": 14.0,
+  "ui_font_features": {
+    "cv11": true,
+    "ss03": true
+  },
   "buffer_font_family": "MonoLisa Nerd Font",
   "buffer_font_weight": 450,
   "buffer_font_size": 13,
@@ -108,15 +113,55 @@
       "editor.foreground": "#E8E5DF",
       "text": "#E8E5DF",
       "text.muted": "#9A968F",
-      "background": "#181614",
+
+      "background": "#222018",
       "editor.background": "#181614",
       "editor.gutter.background": "#181614",
-      "panel.background": "#181614",
-      "tab_bar.background": "#181614",
-      "title_bar.background": "#181614",
-      "status_bar.background": "#181614",
+      "editor.active_line.background": "#1F1C19",
+      "editor.active_line_number": "#E8E5DF",
+      "editor.line_number": "#5A554F",
+      "editor.invisible": "#3A3530",
+      "editor.indent_guide": "#23201D",
+      "editor.indent_guide_active": "#3D3830",
+
+      "panel.background": "#222018",
+      "tab_bar.background": "#222018",
+      "tab.inactive_background": "#222018",
+      "tab.active_background": "#181614",
+      "title_bar.background": "#222018",
+      "status_bar.background": "#222018",
       "toolbar.background": "#181614",
-      "terminal.background": "#181614"
+      "terminal.background": "#181614",
+
+      "border": "#3D3830",
+      "border.variant": "#2A2724",
+
+      "scrollbar.thumb.background": "#3D3830",
+      "scrollbar.thumb.hover_background": "#4F4A42",
+      "scrollbar.track.background": "#222018",
+      "scrollbar.track.border": "#222018",
+
+      "search.match_background": "#3F3520",
+
+      "error": "#FF8080",
+      "warning": "#FFC799",
+      "info": "#9A968F",
+      "hint": "#99FFE4",
+
+      "created": "#99FFE4",
+      "modified": "#FFC799",
+      "deleted": "#FF8080",
+      "version_control.added": "#99FFE4",
+      "version_control.modified": "#FFC799",
+      "version_control.deleted": "#FF8080",
+
+      "players": [
+        { "cursor": "#FFC799", "background": "#FFC799", "selection": "#2F2C29" }
+      ],
+
+      "syntax": {
+        "comment": { "color": "#6F6A62", "font_style": "italic" }
+      }
     }
   },
   "language_models": {
