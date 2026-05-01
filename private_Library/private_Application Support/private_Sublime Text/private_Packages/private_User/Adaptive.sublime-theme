@@ -1,32 +1,96 @@
 {
-    "extends": "Adaptive.sublime-theme",
-    "variables": {
-        "bg": "#181614",
-        "chrome": "#13110F",
-        "chrome_active": "#181614",
-        "fg": "#E8E5DF",
-        "muted": "#9A968F",
-        "accent": "#FFC799"
+  "extends": "Adaptive.sublime-theme",
+  "variables": {
+    "bg": "#181614",
+    "chrome": "#13110F",
+    "chrome_active": "#181614",
+    "fg": "#E8E5DF",
+    "muted": "#9A968F",
+    "accent": "#FFC799"
+  },
+  "rules": [
+    {
+      "class": "sidebar_container",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0
     },
-    "rules": [
-        { "class": "sidebar_container", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0 },
-        { "class": "sidebar_tree", "row_padding": [16, 4], "indent": 12, "indent_offset": 12, "indent_top_level": false, "dark_content": true, "layer0.tint": "var(chrome)", "layer0.opacity": 1.0 },
-        { "class": "sidebar_heading", "color": "var(muted)", "font.bold": false },
-        { "class": "sidebar_label", "color": "var(fg)" },
-        { "class": "sidebar_label", "parents": [{ "class": "tree_row", "attributes": ["selected"] }], "color": "var(accent)" },
-        { "class": "tree_row", "attributes": ["selected"], "layer0.tint": "#23201D", "layer0.opacity": 1.0 },
+    {
+      "class": "sidebar_tree",
+      "row_padding": [16, 4],
+      "indent": 12,
+      "indent_offset": 12,
+      "indent_top_level": false,
+      "dark_content": true,
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0
+    },
+    { "class": "sidebar_heading", "color": "var(muted)", "font.bold": false },
+    { "class": "sidebar_label", "color": "var(fg)" },
+    {
+      "class": "sidebar_label",
+      "parents": [{ "class": "tree_row", "attributes": ["selected"] }],
+      "color": "var(accent)"
+    },
+    {
+      "class": "tree_row",
+      "attributes": ["selected"],
+      "layer0.tint": "#23201D",
+      "layer0.opacity": 1.0
+    },
 
-        { "class": "tabset_control", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0, "tab_overlap": 0, "tab_width": 180, "tab_min_width": 80, "mouse_wheel_switch": false },
-        { "class": "tab_control", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0, "content_margin": [12, 6, 8, 6] },
-        { "class": "tab_control", "attributes": ["selected"], "layer0.tint": "var(chrome_active)", "layer0.opacity": 1.0 },
-        { "class": "tab_label", "color": "var(muted)", "shadow_color": "transparent" },
-        { "class": "tab_label", "parents": [{ "class": "tab_control", "attributes": ["selected"] }], "color": "var(fg)" },
-        { "class": "tab_close_button", "layer0.tint": "var(muted)" },
+    {
+      "class": "tabset_control",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0,
+      "tab_overlap": 0,
+      "tab_width": 180,
+      "tab_min_width": 80,
+      "mouse_wheel_switch": false
+    },
+    {
+      "class": "tab_control",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0,
+      "content_margin": [12, 6, 8, 6]
+    },
+    {
+      "class": "tab_control",
+      "attributes": ["selected"],
+      "layer0.tint": "var(chrome_active)",
+      "layer0.opacity": 1.0
+    },
+    {
+      "class": "tab_label",
+      "color": "var(muted)",
+      "shadow_color": "transparent"
+    },
+    {
+      "class": "tab_label",
+      "parents": [{ "class": "tab_control", "attributes": ["selected"] }],
+      "color": "var(fg)"
+    },
+    { "class": "tab_close_button", "layer0.tint": "var(muted)" },
 
-        { "class": "status_bar", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0 },
-        { "class": "label_control", "parents": [{ "class": "status_bar" }], "color": "var(muted)" },
-        { "class": "title_bar", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0 },
-        { "class": "panel_control", "layer0.tint": "var(chrome)", "layer0.opacity": 1.0 },
-        { "class": "panel_close_button", "layer0.tint": "var(muted)" }
-    ]
+    {
+      "class": "status_bar",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0
+    },
+    {
+      "class": "label_control",
+      "parents": [{ "class": "status_bar" }],
+      "color": "var(muted)"
+    },
+    {
+      "class": "title_bar",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0
+    },
+    {
+      "class": "panel_control",
+      "layer0.tint": "var(chrome)",
+      "layer0.opacity": 1.0
+    },
+    { "class": "panel_close_button", "layer0.tint": "var(muted)" }
+  ]
 }
