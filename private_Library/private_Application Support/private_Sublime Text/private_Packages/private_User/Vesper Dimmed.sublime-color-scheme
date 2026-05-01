@@ -6,9 +6,14 @@
         "fg": "#E8E5DF",
         "muted": "#9A968F",
         "subtle": "#6F6A62",
+        "punct": "#7E7872",
         "orange": "#FFC799",
         "aqua": "#99FFE4",
         "red": "#FF8080",
+        "yellow": "#F2C879",
+        "purple": "#C7A4F0",
+        "green": "#A8E5A0",
+        "tan": "#E6B99D",
         "selection": "#2F2C29",
         "line_highlight": "#1F1C19"
     },
@@ -29,27 +34,63 @@
         "find_highlight": "var(orange)",
         "find_highlight_foreground": "var(bg)",
         "accent": "var(orange)",
-        "popup_css": "html { background-color: #1C1A17; color: #E8E5DF; border: 1px solid #2A2724; }"
+        "popup_css": "html { background-color: #1C1A17; color: #E8E5DF; border: 1px solid #2A2724; box-shadow: 0 4px 12px rgba(0,0,0,0.4); }"
     },
     "rules": [
         { "scope": "comment, punctuation.definition.comment", "foreground": "var(subtle)", "font_style": "italic" },
-        { "scope": "string, constant.other.symbol, constant.other.key", "foreground": "var(aqua)" },
-        { "scope": "constant.numeric, constant.language, constant.character", "foreground": "var(orange)" },
-        { "scope": "keyword, storage.type, storage.modifier", "foreground": "var(orange)" },
-        { "scope": "entity.name.function, support.function, meta.function-call entity.name.function", "foreground": "var(aqua)" },
-        { "scope": "entity.name.class, entity.name.type, support.class, support.type", "foreground": "var(orange)" },
-        { "scope": "variable, variable.parameter, meta.parameter", "foreground": "var(fg)" },
-        { "scope": "punctuation, meta.brace, meta.delimiter", "foreground": "var(muted)" },
+        { "scope": "comment.block.documentation, comment.line.documentation", "foreground": "var(muted)", "font_style": "" },
+
+        { "scope": "string, constant.other.symbol", "foreground": "var(aqua)" },
+        { "scope": "punctuation.definition.string", "foreground": "var(aqua)" },
+        { "scope": "constant.character.escape, string.escape", "foreground": "var(orange)" },
+        { "scope": "string.regexp", "foreground": "var(purple)" },
+        { "scope": "punctuation.definition.template-expression, meta.template.expression punctuation.definition", "foreground": "var(green)" },
+
+        { "scope": "constant.numeric, constant.language, constant.character", "foreground": "var(tan)" },
+        { "scope": "constant.other.key, support.type.property-name, meta.mapping.key string, entity.name.tag.yaml, string.unquoted.plain.out.yaml", "foreground": "var(yellow)" },
+
+        { "scope": "keyword.control, keyword.other, storage.type", "foreground": "var(orange)" },
+        { "scope": "storage.modifier", "foreground": "var(orange)", "font_style": "italic" },
         { "scope": "keyword.operator", "foreground": "var(muted)" },
+
+        { "scope": "variable.language", "foreground": "var(purple)", "font_style": "italic" },
+        { "scope": "meta.decorator, meta.annotation, variable.annotation, punctuation.definition.annotation", "foreground": "var(purple)", "font_style": "italic" },
+
+        { "scope": "entity.name.function, support.function, meta.function-call entity.name.function", "foreground": "var(aqua)" },
+        { "scope": "variable.parameter, meta.parameter", "foreground": "var(fg)", "font_style": "italic" },
+
+        { "scope": "entity.name.class, entity.name.type, entity.name.struct, entity.name.enum, entity.name.interface, entity.name.trait, support.class, support.type", "foreground": "var(purple)" },
+        { "scope": "entity.other.inherited-class", "foreground": "var(aqua)" },
+        { "scope": "meta.type.parameters, storage.type.generic", "foreground": "var(purple)", "font_style": "italic" },
+        { "scope": "entity.name.namespace, entity.name.module, support.other.namespace", "foreground": "var(orange)" },
+
+        { "scope": "variable, variable.other.member, variable.other.property", "foreground": "var(fg)" },
+        { "scope": "variable.other.constant, support.constant", "foreground": "var(purple)" },
+
+        { "scope": "punctuation, meta.brace, meta.delimiter", "foreground": "var(punct)" },
+        { "scope": "punctuation.accessor, keyword.operator.member, keyword.operator.navigation", "foreground": "var(subtle)" },
+
         { "scope": "entity.name.tag", "foreground": "var(orange)" },
-        { "scope": "entity.other.attribute-name", "foreground": "var(aqua)" },
-        { "scope": "invalid, invalid.illegal", "foreground": "var(red)" },
+        { "scope": "entity.other.attribute-name", "foreground": "var(yellow)" },
+
+        { "scope": "support.type.property-name.css, meta.property-name.css", "foreground": "var(yellow)" },
+        { "scope": "entity.other.attribute-name.pseudo-class.css, entity.other.attribute-name.pseudo-element.css", "foreground": "var(purple)" },
+        { "scope": "keyword.other.unit.css, keyword.other.unit.scss, keyword.other.unit.less", "foreground": "var(orange)" },
+
         { "scope": "markup.heading, entity.name.section", "foreground": "var(orange)", "font_style": "bold" },
-        { "scope": "markup.bold", "font_style": "bold" },
+        { "scope": "markup.bold, markup.strong", "font_style": "bold" },
         { "scope": "markup.italic", "font_style": "italic" },
+        { "scope": "markup.raw.inline, markup.raw.block, markup.raw.code-fence", "foreground": "var(aqua)" },
         { "scope": "markup.underline.link, string.other.link", "foreground": "var(aqua)" },
-        { "scope": "markup.inserted", "foreground": "var(aqua)" },
-        { "scope": "markup.deleted", "foreground": "var(red)" },
-        { "scope": "markup.changed", "foreground": "var(orange)" }
+        { "scope": "markup.list.numbered.bullet, markup.list.unnumbered.bullet, punctuation.definition.list_item.markdown", "foreground": "var(orange)" },
+        { "scope": "markup.quote, text.blockquote", "foreground": "var(muted)", "font_style": "italic" },
+        { "scope": "meta.separator.thematic-break.markdown, punctuation.definition.thematic-break.markdown", "foreground": "var(subtle)" },
+
+        { "scope": "markup.inserted, diff.inserted", "foreground": "var(green)" },
+        { "scope": "markup.deleted, diff.deleted", "foreground": "var(red)" },
+        { "scope": "markup.changed, diff.changed", "foreground": "var(orange)" },
+        { "scope": "meta.diff.header, diff.header", "foreground": "var(purple)" },
+
+        { "scope": "invalid, invalid.illegal", "foreground": "var(red)" }
     ]
 }
