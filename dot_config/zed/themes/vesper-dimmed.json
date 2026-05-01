@@ -154,7 +154,7 @@
         ],
         "syntax": {
           "attribute": { "color": "#F2C879" },
-          "boolean": { "color": "#E6B99D" },
+          "boolean": { "color": "#EA9988" },
           "comment": { "color": "#6F6A62", "font_style": "italic" },
           "comment.doc": { "color": "#9A968F" },
           "constant": { "color": "#C7A4F0" },
@@ -167,7 +167,7 @@
           "label": { "color": "#F2C879" },
           "link_text": { "color": "#99FFE4", "font_style": "italic" },
           "link_uri": { "color": "#6F6A62" },
-          "number": { "color": "#E6B99D" },
+          "number": { "color": "#EA9988" },
           "operator": { "color": "#9A968F" },
           "property": { "color": "#F2C879" },
           "punctuation": { "color": "#7E7872" },

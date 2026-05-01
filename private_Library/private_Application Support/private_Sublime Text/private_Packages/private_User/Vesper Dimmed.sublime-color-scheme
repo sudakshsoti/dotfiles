@@ -13,7 +13,7 @@
         "yellow": "#F2C879",
         "purple": "#C7A4F0",
         "green": "#A8E5A0",
-        "tan": "#E6B99D",
+        "peach": "#EA9988",
         "selection": "#2F2C29",
         "line_highlight": "#1F1C19"
     },
@@ -46,7 +46,7 @@
         { "scope": "string.regexp", "foreground": "var(purple)" },
         { "scope": "punctuation.definition.template-expression, meta.template.expression punctuation.definition", "foreground": "var(green)" },
 
-        { "scope": "constant.numeric, constant.language, constant.character", "foreground": "var(tan)" },
+        { "scope": "constant.numeric, constant.language, constant.character", "foreground": "var(peach)" },
         { "scope": "constant.other.key, support.type.property-name, meta.mapping.key string, entity.name.tag.yaml, string.unquoted.plain.out.yaml", "foreground": "var(yellow)" },
 
         { "scope": "keyword.control, keyword.other, storage.type", "foreground": "var(orange)" },
