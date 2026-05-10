@@ -170,6 +170,7 @@
         "syntax": {
           "attribute": { "color": "#bfbdba" },
           "boolean": { "color": "#b5b76a" },
+          "class": { "color": "#c4cfd6" },
           "comment": { "color": "#94928e", "font_style": "italic" },
           "comment.doc": { "color": "#94928e", "font_style": "italic" },
           "constant": { "color": "#e095c7" },
@@ -204,6 +205,7 @@
           "punctuation.delimiter": { "color": "#94928e" },
           "punctuation.list_marker": { "color": "#94928e" },
           "punctuation.special": { "color": "#94928e" },
+          "selector.class": { "color": "#b4e0ef" },
           "selector.pseudo": { "color": "#e095c7" },
           "string": { "color": "#eba66d" },
           "string.escape": { "color": "#75c59b" },
