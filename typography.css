@@ -322,7 +322,7 @@ select {
 .type-label-lg {
     font-size: var(--font-size-md);
     line-height: var(--leading-normal);
-    letter-spacing: 0;
+    letter-spacing: var(--tracking-normal);
 }
 
 .type-label-md {
@@ -429,9 +429,8 @@ small {
 /* ==========================================================================
    Data typography
 
-   Width compression for density: .type-data, .type-data-dense,
-   .type-data-extra-dense. Enterprise Sans has proportional figures only
-   (no `tnum`)
+   Data is dense by default: .type-data is narrow, .type-data-dense is
+   condensed. Enterprise Sans has proportional figures only (no `tnum`)
    ========================================================================== */
 
 .type-tabular {
@@ -442,8 +441,7 @@ small {
 }
 
 .type-data,
-.type-data-dense,
-.type-data-extra-dense {
+.type-data-dense {
     font-size: var(--font-size-sm);
     line-height: var(--leading-normal);
     font-weight: var(--font-weight-regular);
@@ -451,21 +449,18 @@ small {
 }
 
 .type-data {
-    font-stretch: var(--font-width-normal);
-}
-.type-data-dense {
     font-stretch: var(--font-width-narrow);
 }
-.type-data-extra-dense {
+.type-data-dense {
     font-stretch: var(--font-width-condensed);
     line-height: 1.3;
 }
 
 .type-data-strong {
     font-size: var(--font-size-sm);
-    line-height: var(--leading-normal);
+    line-height: 1.3;
     font-weight: var(--font-weight-medium);
-    font-stretch: var(--font-width-narrow);
+    font-stretch: var(--font-width-condensed);
     letter-spacing: var(--tracking-normal);
     font-variant-numeric: tabular-nums;
 }
@@ -473,8 +468,8 @@ small {
 .type-data-id,
 .type-data-code {
     font-size: var(--font-size-sm);
-    line-height: var(--leading-normal);
-    font-stretch: var(--font-width-narrow);
+    line-height: 1.3;
+    font-stretch: var(--font-width-condensed);
     letter-spacing: var(--tracking-wide);
     font-variant-numeric: tabular-nums;
 }
@@ -483,9 +478,9 @@ small {
 .type-data-number,
 .type-data-date {
     font-size: var(--font-size-sm);
-    line-height: var(--leading-normal);
-    font-stretch: var(--font-width-narrow);
-    letter-spacing: 0;
+    line-height: 1.3;
+    font-stretch: var(--font-width-condensed);
+    letter-spacing: var(--tracking-normal);
     font-variant-numeric: tabular-nums;
 }
 
@@ -520,7 +515,8 @@ small {
 .data-table td[data-type="time"],
 .data-table td[data-type="id"],
 .data-table td[data-type="code"] {
-    font-stretch: var(--font-width-narrow);
+    font-stretch: var(--font-width-condensed);
+    line-height: 1.3;
     font-variant-numeric: tabular-nums;
 }
 
@@ -532,17 +528,6 @@ small {
 .data-table td[data-type="id"],
 .data-table td[data-type="code"] {
     letter-spacing: var(--tracking-wide);
-}
-
-/* Density toggle — opt-in via data-density="dense" on the table */
-.data-table[data-density="dense"] td[data-type="number"],
-.data-table[data-density="dense"] td[data-type="currency"],
-.data-table[data-density="dense"] td[data-type="date"],
-.data-table[data-density="dense"] td[data-type="time"],
-.data-table[data-density="dense"] td[data-type="id"],
-.data-table[data-density="dense"] td[data-type="code"] {
-    font-stretch: var(--font-width-condensed);
-    line-height: 1.3;
 }
 
 /* ==========================================================================
