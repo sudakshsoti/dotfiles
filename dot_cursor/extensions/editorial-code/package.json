@@ -1,0 +1,18 @@
+{
+  "name": "editorial-code",
+  "displayName": "Editorial Code",
+  "description": "Editorial Code colour theme for Cursor / VSCode.",
+  "version": "0.1.0",
+  "publisher": "sudakshsoti",
+  "engines": { "vscode": "^1.74.0" },
+  "categories": ["Themes"],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Editorial Code",
+        "uiTheme": "vs-dark",
+        "path": "./themes/editorial-code-color-theme.json"
+      }
+    ]
+  }
+}
