@@ -23,9 +23,7 @@
 }
 
 /* TODO: add a metrics-overridden fallback @font-face against system-ui
-   (size-adjust, ascent-override, descent-override, line-gap-override)
-   once Enterprise Sans metrics are confirmed with the foundry. Suppresses
-   CLS during font swap. */
+   (size-adjust, ascent-override, descent-override, line-gap-override) */
 
 /* ==========================================================================
    Tokens
