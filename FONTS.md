@@ -1,19 +1,19 @@
 # Fonts
 
-All font files are in Google Drive → **12 Fonts** folder.
+Font binaries live in `fonts/` (private repo, so they're committed directly).
 
 ## Installed on this machine
 
-| Family | Weights used | Config |
-|---|---|---|
-| MonoLisa Nerd Font | Medium (450) | Zed, Ghostty, Sublime Text |
-| Atkinson Hyperlegible | Regular | Zed UI font |
+| Family | Weights used | Config | Source |
+|---|---|---|---|
+| MonoLisa Nerd Font | Medium (450) | Zed, Ghostty, Sublime Text | `fonts/MonoLisa-Nerd/` |
+| Atkinson Hyperlegible | Regular | Zed UI font | `fonts/Atkinson-Hyperlegible/` |
 
 ## On a new machine
 
-1. Open Google Drive → 12 Fonts → MonoLisa → nerd-font
-2. Download all 14 `MonoLisaNerdFont-*.ttf` files
-3. Copy to `~/Library/Fonts/`
-4. Run `fc-cache -f` or just open Font Book — macOS picks them up automatically
+```bash
+cp fonts/MonoLisa-Nerd/*.ttf ~/Library/Fonts/
+cp fonts/Atkinson-Hyperlegible/*.ttf ~/Library/Fonts/
+```
 
-Atkinson Hyperlegible is free: `brew install --cask font-atkinson-hyperlegible`
+macOS picks them up automatically — open Font Book to verify, or run `fc-cache -f` if you have it.

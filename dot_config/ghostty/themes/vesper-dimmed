@@ -1,9 +1,9 @@
 background = 171615
-foreground = E6E2DD
+foreground = E6E2DA
 cursor-color = FFC799
 cursor-text = 171615
 selection-background = 2F2C29
-selection-foreground = E6E2DD
+selection-foreground = E6E2DA
 
 palette = 0=#171615
 palette = 1=#FF8080
