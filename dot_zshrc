@@ -27,6 +27,7 @@ alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
 alias zedit="subl ~/.zshrc"
 alias cat="bat"
+alias c="claude --dangerously-skip-permissions"
 
 # local overrides
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
@@ -41,3 +42,9 @@ eval "$(fzf --zsh)"
 
 # starship prompt
 eval "$(starship init zsh)"
+
+eval $(thefuck --alias)
+
+# zsh plugins (syntax-highlighting must be sourced last)
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
