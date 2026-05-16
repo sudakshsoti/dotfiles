@@ -31,6 +31,11 @@ alias zedit="subl ~/.zshrc"
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # fzf
+export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
+export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
 eval "$(fzf --zsh)"
 
 # starship prompt
