@@ -1,38 +1,105 @@
-alias python='python3'
-alias pip='pip3'
-
-# opencode
+# ============================================================
+# PATH
+# ============================================================
 export PATH="/Users/sudakshsoti/.opencode/bin:$PATH"
-
-# antigravity
 export PATH="/Users/sudakshsoti/.antigravity/antigravity/bin:$PATH"
-
-# pipx
 export PATH="$PATH:/Users/sudakshsoti/.local/bin"
 
+# ============================================================
+# History
+# ============================================================
+HISTFILE=~/.zsh_history
+HISTSIZE=50000
+SAVEHIST=50000
+setopt SHARE_HISTORY HIST_IGNORE_ALL_DUPS HIST_IGNORE_SPACE HIST_REDUCE_BLANKS HIST_VERIFY
+
+# ============================================================
+# Completions (must come before plugins)
+# ============================================================
+FPATH="$(brew --prefix)/share/zsh/site-functions:$FPATH"
+autoload -Uz compinit && compinit
+
+# ============================================================
 # nvm
+# ============================================================
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
 
-# aliases
+# ============================================================
+# Python
+# ============================================================
+alias python='python3'
+alias pip='pip3'
+
+# ============================================================
+# Homelab
+# ============================================================
 alias homelab="ssh homelab"
 alias homelab-restart="ssh homelab 'cd /opt/stacks && docker compose restart'"
 alias homelab-logs="ssh homelab 'cd /opt/stacks && docker compose logs -f'"
+alias hlvitals="ssh homelab vitals"
+alias hldiag="ssh homelab diag-play"
+alias hldf="ssh homelab 'df -h / /mnt/HC_Volume_105268540 && docker system df'"
+alias hlps="ssh homelab 'docker ps --format \"table {{.Names}}\t{{.Status}}\"'"
+
+# ============================================================
+# General
+# ============================================================
 alias t="open -a Ghostty"
 alias bupdate="brew update && brew upgrade && brew cleanup --prune=all"
 alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
-alias c="claude --permission-mode auto"
 alias zedit="subl ~/.zshrc"
-alias cat="bat"
 alias c="claude --dangerously-skip-permissions"
 
-# local overrides
+# ============================================================
+# eza (ls replacement)
+# ============================================================
+alias ls="eza --group-directories-first --icons=auto"
+alias ll="eza -lah --git --icons=auto --group-directories-first"
+alias lt="eza --tree --level=2 --icons=auto"
+
+# ============================================================
+# Git
+# ============================================================
+alias gs="git status -sb"
+alias gd="git diff"
+alias gl="git log --oneline --graph --decorate -20"
+alias gp="git push"
+alias gco="git checkout"
+alias gcm="git commit -m"
+
+# ============================================================
+# System
+# ============================================================
+alias ports="lsof -iTCP -sTCP:LISTEN -n -P"
+alias myip="curl -s https://ifconfig.me && echo"
+alias path='echo $PATH | tr ":" "\n"'
+
+# ============================================================
+# Functions
+# ============================================================
+mkcd() { mkdir -p "$1" && cd "$1"; }
+killport() { lsof -ti tcp:"$1" | xargs kill -9 2>/dev/null && echo "killed port $1"; }
+
+fcd() {
+  local dir
+  dir=$(fd --type d --hidden --exclude .git | fzf --preview 'ls -la {}') && cd "$dir"
+}
+
+# Lazy-load thefuck (saves ~200ms startup)
+fuck() { eval "$(thefuck --alias)"; unfunction fuck; fuck "$@"; }
+
+# ============================================================
+# Local overrides
+# ============================================================
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+# ============================================================
 # fzf
+# ============================================================
 export FZF_DEFAULT_COMMAND='fd --type f --hidden --follow --exclude .git'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
@@ -40,11 +107,22 @@ export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-ran
 export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
 eval "$(fzf --zsh)"
 
-# starship prompt
+# ============================================================
+# zoxide
+# ============================================================
+eval "$(zoxide init zsh --cmd cd)"
+
+# ============================================================
+# Starship prompt
+# ============================================================
 eval "$(starship init zsh)"
 
-eval $(thefuck --alias)
-
-# zsh plugins (syntax-highlighting must be sourced last)
+# ============================================================
+# zsh plugins
+# Order matters: autosuggestions → history-substring-search → syntax-highlighting (last)
+# ============================================================
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
