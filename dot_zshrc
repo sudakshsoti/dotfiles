@@ -30,5 +30,8 @@ alias zedit="subl ~/.zshrc"
 # local overrides
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+# fzf
+eval "$(fzf --zsh)"
+
 # starship prompt
 eval "$(starship init zsh)"
