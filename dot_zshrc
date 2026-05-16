@@ -26,6 +26,7 @@ alias la="ls -A"
 alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
 alias zedit="subl ~/.zshrc"
+alias cat="bat"
 
 # local overrides
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
