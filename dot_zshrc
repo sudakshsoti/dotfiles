@@ -51,7 +51,6 @@ alias bupdate="brew update && brew upgrade && brew cleanup --prune=all"
 alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
-alias zedit="subl ~/.zshrc"
 alias c="claude --dangerously-skip-permissions"
 
 # ============================================================
