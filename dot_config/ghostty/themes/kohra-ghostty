@@ -1,0 +1,32 @@
+# Kohra — Ghostty theme
+# Cool fog-grey monochrome. Ported from the Kohra Zed/VS Code palette.
+# Drop into ~/.config/ghostty/themes/ then set `theme = kohra-ghostty` in config.
+
+background = 181b1d
+foreground = 828689
+
+cursor-color = 78accf
+cursor-text  = 181b1d
+
+selection-background = 0a3149
+selection-foreground = babec1
+
+# ANSI normal
+palette = 0=#2b2e31
+palette = 1=#b46768
+palette = 2=#768a42
+palette = 3=#a57635
+palette = 4=#3e88b5
+palette = 5=#a86893
+palette = 6=#1c9388
+palette = 7=#828689
+
+# ANSI bright
+palette = 8=#4a4d50
+palette = 9=#e19796
+palette = 10=#a4b776
+palette = 11=#d2a56d
+palette = 12=#76b6e1
+palette = 13=#d598c0
+palette = 14=#65c1b5
+palette = 15=#babec1

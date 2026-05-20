@@ -1,0 +1,28 @@
+{
+    "name": "kohra",
+    "displayName": "Kohra",
+    "description": "",
+    "version": "0.1.0",
+    "publisher": "sudakshsoti",
+    "license": "MIT",
+    "engines": {
+        "vscode": "^1.17.0"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            {
+                "label": "Kohra",
+                "uiTheme": "vs-dark",
+                "path": "./themes/kohra-color-theme.json"
+            },
+            {
+                "label": "Kohra (Cursor)",
+                "uiTheme": "vs-dark",
+                "path": "./themes/kohra-cursor-color-theme.json"
+            }
+        ]
+    }
+}
