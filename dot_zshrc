@@ -123,11 +123,6 @@ export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
 eval "$(fzf --zsh)"
 
 # ============================================================
-# zoxide
-# ============================================================
-eval "$(zoxide init zsh --cmd cd)"
-
-# ============================================================
 # Starship prompt
 # ============================================================
 eval "$(starship init zsh)"
@@ -141,3 +136,8 @@ source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-se
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# ============================================================
+# zoxide (must be initialized last — hooks chpwd, not ZLE)
+# ============================================================
+eval "$(zoxide init zsh --cmd cd)"
