@@ -1,10 +1,12 @@
-adjust-cell-height = 10%
+font-family = BerkeleyMonoNFM
+adjust-cell-height = 12%
 font-size = 13
 font-style = Medium
-theme = editorial-code
+theme = kohra-ghostty
 background-opacity = 0.95
 window-padding-x = 12
 window-padding-y = 12
+font-thicken = true
 cursor-style = bar
 background-opacity = 1
 background-blur = false
