@@ -7,11 +7,77 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "Catppuccin Frappé",
+  "theme": {
+    "mode": "dark",
+    "light": "Ayu Dark",
+    "dark": "Kohra",
+  },
+  "ui_font_family": "Retina",
+  "ui_font_size": 15.0,
+  "agent_ui_font_size": 14.0,
+  "agent_buffer_font_size": 13.0,
+  "buffer_font_family": "BerkeleyMonoNFM",
+  "buffer_font_weight": 400.0,
+  "buffer_font_size": 14.0,
+  "show_edit_predictions": false,
   "edit_predictions": {
-    "provider": "zed"
+    "provider": "zed",
+  },
+  "git_panel": {
+    "dock": "left",
   },
   "project_panel": {
     "dock": "left",
+  },
+  "title_bar": {
+    "show_branch_status_icon": true,
+  },
+  "base_keymap": "VSCode",
+  "autosave": "on_focus_change",
+  "soft_wrap": "editor_width",
+  "session": {
+    "trust_all_worktrees": true,
+  },
+  "terminal": {
+    "copy_on_select": true,
+    "cursor_shape": "bar",
+    "font_family": "BerkeleyMonoNFM",
+    "font_size": 13.0,
+    "font_weight": 400.0,
+    "dock": "right",
+    "option_as_meta": true,
+  },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/node_modules",
+    "**/.next",
+    "**/.turbo",
+    "**/.cache",
+    "**/.playwright-mcp",
+    "**/dist",
+    "**/build",
+    "**/.svn",
+    "**/.hg",
+    "**/CVS",
+    "**/.DS_Store",
+    "**/Thumbs.db",
+    "**/.classpath",
+    "**/.settings",
+  ],
+  "agent_servers": {
+    "gemini": {
+      "type": "registry",
+    },
+    "claude-acp": {
+      "favorite_config_option_values": {
+        "mode": ["plan", "bypassPermissions"],
+      },
+      "default_config_options": {
+        "model": "opusplan",
+      },
+      "type": "registry",
+    },
   },
   "context_servers": {
     "chrome-devtools-mcp-zed": {
@@ -39,10 +105,25 @@
       },
     },
   },
-  "title_bar": {
-    "show_branch_status_icon": true,
-  },
   "agent": {
+    "inline_assistant_model": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-flash",
+      "enable_thinking": false,
+    },
+    "default_model": {
+      "provider": "openrouter",
+      "model": "openrouter/auto",
+      "enable_thinking": false,
+    },
+    "commit_message_model": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-flash",
+    },
+    "thread_summary_model": {
+      "provider": "openrouter",
+      "model": "deepseek/deepseek-v4-flash",
+    },
     "dock": "right",
     "tool_permissions": {
       "default": "allow",
@@ -51,59 +132,6 @@
     "favorite_models": [],
     "play_sound_when_agent_done": "always",
     "model_parameters": [],
-    "commit_message_model": {
-      "provider": "google",
-      "model": "gemini-3-flash"
-    },
-    "thread_summary_model": {
-      "provider": "google",
-      "model": "gemini-3-flash"
-    }
-  },
-  "ui_font_family": "Atkinson Hyperlegible",
-  "ui_font_size": 15.0,
-  "agent_ui_font_size": 15.0,
-  "agent_buffer_font_size": 13.0,
-  "buffer_font_family": "MonoLisa Nerd Font Mono",
-  "buffer_font_weight": 450,
-  "buffer_font_size": 13.0,
-  "terminal": {
-    "copy_on_select": true,
-    "cursor_shape": "bar",
-    "font_family": "MonoLisa Nerd Font",
-    "font_size": 13.0,
-    "font_weight": 500,
-    "dock": "right",
-  },
-  "session": {
-    "trust_all_worktrees": true,
-  },
-  "autosave": "on_focus_change",
-  "soft_wrap": "editor_width",
-  "agent_servers": {
-    "gemini": {
-      "type": "registry",
-    },
-    "claude-acp": {
-      "favorite_config_option_values": {
-        "mode": ["plan", "bypassPermissions"],
-      },
-      "default_config_options": {
-        "model": "opusplan",
-      },
-      "type": "registry",
-    },
-  },
-  "icon_theme": {
-    "mode": "light",
-    "light": "Phosphor Icons Theme",
-    "dark": "Colored Zed Icons Theme Dark"
-  },
-  "base_keymap": "VSCode",
-  "theme": {
-    "mode": "system",
-    "light": "One Light",
-    "dark": "Flexoki Dark"
   },
   "language_models": {
     "google": {
@@ -112,19 +140,40 @@
         {
           "name": "gemini-3.1-flash-lite",
           "display_name": "Gemini 3.1 Flash-Lite (Fastest)",
-          "max_tokens": 1000000
+          "max_tokens": 1000000,
         },
         {
           "name": "gemini-3-flash",
           "display_name": "Gemini 3 Flash (Recommended)",
-          "max_tokens": 1000000
+          "max_tokens": 1000000,
         },
         {
           "name": "gemini-3.1-pro",
           "display_name": "Gemini 3.1 Pro (Flagship)",
-          "max_tokens": 1000000
-        }
-      ]
-    }
-  }
+          "max_tokens": 1000000,
+        },
+      ],
+    },
+  },
+  "auto_install_extensions": {
+    "catppuccin-icons": true,
+    "charmed-icons": true,
+    "colored-zed-icons-theme": true,
+    "flexoki-themes": true,
+    "git-firefly": true,
+    "html": true,
+    "make": true,
+    "markdown-oxide": true,
+    "material-icon-theme": true,
+    "mcp-server-context7": true,
+    "mcp-server-github": true,
+    "min-theme": true,
+    "phosphor-icons-theme": true,
+    "postgres-context-server": true,
+    "rainbow-csv": true,
+    "sql": true,
+    "tailwind-theme": true,
+    "toml": true,
+    "xml": true,
+  },
 }
