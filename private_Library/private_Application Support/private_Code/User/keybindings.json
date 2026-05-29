@@ -1,0 +1,14 @@
+[
+  // ─── Cmd+L → Claude Code ──────────────────────────────────────────────
+  // Focus / toggle the Claude Code panel (parity with the Cursor setup).
+  // VS Code's default Cmd+L is "Expand Line Selection"; this user binding
+  // overrides it. Re-add expandLineSelection on another key if you miss it.
+  { "key": "cmd+l", "command": "claude-vscode.focus" }
+
+  // Built-in Claude Code defaults — already active, no entry needed:
+  //   Cmd+Esc   → claude-vscode.focus / blur   (toggle editor <-> Claude)
+  //   Alt+K     → claude-vscode.insertAtMention (@-mention selection)
+  //   Shift+Tab → cycle permission modes (runtime, inside the prompt box)
+  // VS Code does NOT force an agent sidebar open on startup (the reason for
+  // the move off Cursor), so no startup-suppression workaround is needed.
+]

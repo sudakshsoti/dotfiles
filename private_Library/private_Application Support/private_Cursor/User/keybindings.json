@@ -1,0 +1,24 @@
+[
+  // ─── Cmd+L → Claude Code ──────────────────────────────────────────────
+  // Kill Cursor's chat on Cmd+L (negate every command name Cursor has used
+  // for it across versions — harmless if one doesn't exist on your build).
+  { "key": "cmd+l", "command": "-aichat.newchat" },
+  { "key": "cmd+l", "command": "-aichat.newchataction" },
+  { "key": "cmd+l", "command": "-composer.startComposerPrompt" },
+  // Cmd+L now focuses / toggles into the Claude Code panel.
+  { "key": "cmd+l", "command": "claude-vscode.focus" },
+
+  // ─── Cmd+K → left with Cursor (inline edit) ───────────────────────────
+  // Previously disabled via -cursor.edit; restored so Cursor's quick inline
+  // edits keep working. Re-add { "key": "cmd+k", "command": "-cursor.edit" }
+  // to hand this key to Claude instead.
+
+  // ─── Composer kept disabled (unchanged) ───────────────────────────────
+  { "key": "cmd+i", "command": "-composer.start" },
+  { "key": "cmd+shift+i", "command": "-composer.openFull" }
+
+  // Built-in Claude Code defaults — no entry needed, already active:
+  //   Cmd+Esc   → claude-vscode.focus / blur   (toggle editor <-> Claude)
+  //   Alt+K     → claude-vscode.insertAtMention (@-mention selection)
+  //   Shift+Tab → cycle permission modes (runtime, inside the prompt box)
+]
