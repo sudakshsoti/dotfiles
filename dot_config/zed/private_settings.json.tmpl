@@ -15,7 +15,7 @@
   },
   "ui_font_family": "Retina",
   "ui_font_size": 15.0,
-  "agent_ui_font_size": 14.0,
+  "agent_ui_font_size": 16.0,
   "agent_buffer_font_size": 13.0,
   "buffer_font_family": "BerkeleyMonoNFM",
   "buffer_font_weight": 400.0,
@@ -131,6 +131,7 @@
     },
     "favorite_models": [],
     "play_sound_when_agent_done": "always",
+    "notify_when_agent_waiting": "all_screens",
     "model_parameters": [],
   },
   "language_models": {
@@ -153,6 +154,17 @@
           "max_tokens": 1000000,
         },
       ],
+    },
+  },
+  "lsp": {
+    "vscode-css-language-server": {
+      "settings": {
+        "css": {
+          "lint": {
+            "unknownAtRules": "ignore",
+          },
+        },
+      },
     },
   },
   "auto_install_extensions": {
