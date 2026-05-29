@@ -11,7 +11,8 @@
     "bindings": {
       // "shift shift": "file_finder::Toggle"
       "cmd-shift-n": "agent::NewTerminalThread",
-      "cmd-j": "terminal_panel::ToggleFocus",
+      "cmd-j": "agent::ToggleFocus",
+      "cmd-shift-j": "terminal_panel::ToggleFocus",
       "cmd-shift-z": "workspace::ToggleZoom",
       "cmd-b": "workspace::ToggleLeftDock",
       "cmd-r": "workspace::ToggleRightDock"
