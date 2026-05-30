@@ -90,6 +90,7 @@ alias gma="git merge --abort"
 alias gmc="git merge --continue"
 alias gst="git stash"
 alias gstp="git stash pop"
+alias lg="lazygit"
 
 # ============================================================
 # System
