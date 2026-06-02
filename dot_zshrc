@@ -127,7 +127,11 @@ export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
 export FZF_ALT_C_COMMAND='fd --type d --hidden --follow --exclude .git'
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always --style=numbers --line-range=:200 {}'"
 export FZF_ALT_C_OPTS="--preview 'ls -la {}'"
-eval "$(fzf --zsh)"
+# Only load fzf's key-binding/completion integration when attached to a real TTY.
+# fzf snapshots & restores all shell options (incl. the special `zle` option); in a
+# TTY-less interactive shell (e.g. tools that spawn `zsh -i` for snapshots) restoring
+# `zle` fails with "can't change option: zle". The bindings are useless without a TTY anyway.
+[[ -t 1 ]] && eval "$(fzf --zsh)"
 
 # ============================================================
 # Starship prompt
@@ -147,4 +151,5 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ============================================================
 # zoxide (must be initialized last — hooks chpwd, not ZLE)
 # ============================================================
+export _ZO_DOCTOR=0  # suppress the "initialize last" warning (already last; only fires in TTY-less spawns)
 eval "$(zoxide init zsh --cmd cd)"

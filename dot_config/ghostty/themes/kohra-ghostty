@@ -3,7 +3,7 @@
 # Drop into ~/.config/ghostty/themes/ then set `theme = kohra-ghostty` in config.
 
 background = 181b1d
-foreground = 828689
+foreground = babec1
 
 cursor-color = 78accf
 cursor-text  = 181b1d
@@ -29,4 +29,4 @@ palette = 11=#d2a56d
 palette = 12=#76b6e1
 palette = 13=#d598c0
 palette = 14=#65c1b5
-palette = 15=#babec1
+palette = 15=#d3d8da

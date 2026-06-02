@@ -6,5 +6,9 @@
     "terminal.integrated.fontFamily": "BerkeleyMono Nerd Font Mono",
     "terminal.integrated.fontSize": 13,
     "terminal.integrated.macOptionIsMeta": true,
+    "workbench.preferredDarkColorTheme": "Kohra",
+    "claudeCode.preferredLocation": "panel",
+    "cursor.composer.shouldChimeAfterChatFinishes": true,
+    "git.enableSmartCommit": true,
     "workbench.agentsWindowButton.enabled": false
 }
