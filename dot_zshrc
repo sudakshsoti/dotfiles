@@ -6,6 +6,13 @@ export PATH="/Users/sudakshsoti/.antigravity/antigravity/bin:$PATH"
 export PATH="$PATH:/Users/sudakshsoti/.local/bin"
 
 # ============================================================
+# Prompt
+# ============================================================
+# Suppress zsh's inverse "%" end-of-line marker shown when output before a
+# prompt lacks a trailing newline (cmux emits a partial line at launch).
+PROMPT_EOL_MARK=''
+
+# ============================================================
 # History
 # ============================================================
 HISTFILE=~/.zsh_history
@@ -57,7 +64,31 @@ alias bupdate="brew update && brew upgrade && brew cleanup --prune=all"
 alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
-alias c="claude --dangerously-skip-permissions"
+alias c="claude --permission-mode auto"
+
+# ask [prompt] — general / Mac / Q&A session in ~/assistant (shares home's personal memory)
+ask() { (cd ~/assistant && claude "$@"); }
+
+# wt [name] — create a worktree (random name if none given) and cd into it
+wt() {
+  emulate -L zsh
+  local repo dir name
+  repo=$(git rev-parse --show-toplevel 2>/dev/null) || { echo "not in a git repo"; return 1; }
+  if [[ -n "$1" ]]; then
+    name="$1"
+  else
+    local adjs=(twinkling frolicking dazzling brave curious mellow nimble cosmic silent gentle wandering radiant
+                gleaming velvet rugged jolly drowsy spry breezy amber crimson dapper feral lucid murky
+                plucky quiet rowdy sleepy stoic sunny tidy vivid witty zesty bold crisp dim fuzzy keen)
+    local nouns=(otter falcon maple cobalt willow ember pixel quartz lumen drift comet harbor
+                 badger heron cedar onyx fern spark glyph topaz beacon meadow nebula koi
+                 lynx raven birch slate moss flare rune jasper anchor canyon aurora wren)
+    name="${adjs[RANDOM % $#adjs + 1]}-${adjs[RANDOM % $#adjs + 1]}-${nouns[RANDOM % $#nouns + 1]}"
+  fi
+  dir="${repo:h}/worktrees/$name"
+  git -C "$repo" worktree add "$dir" -b "$name" || return 1
+  cd "$dir" && echo "✓ $name → $dir"
+}
 
 # ============================================================
 # eza (ls replacement)
