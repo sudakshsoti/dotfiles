@@ -184,3 +184,15 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # ============================================================
 export _ZO_DOCTOR=0  # suppress the "initialize last" warning (already last; only fires in TTY-less spawns)
 eval "$(zoxide init zsh --cmd cd)"
+
+# ============================================================
+# difftastic — structural (syntax-aware) diffs
+# ============================================================
+alias dft='difft'                               # diff two files: dft a.js b.js
+alias gdft='GIT_EXTERNAL_DIFF=difft git diff'   # git diff rendered by difftastic
+
+# ============================================================
+# git — discard / park working-tree changes
+# ============================================================
+alias gwipe='git reset --hard HEAD'                       # DESTRUCTIVE: discard all uncommitted tracked changes
+alias gpark='git stash push -u -m "gpark $(date +%F\ %T)"' # safe: stash all changes (incl. untracked); restore w/ git stash pop
