@@ -1,0 +1,34 @@
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[user]
+	name = Sudaksh Soti
+	email = sudaksh.soti@gmail.com
+
+# --- delta: everyday pager for git diff / show / log -p ---
+[core]
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[delta]
+	navigate = true       # use n / N to jump between files in the diff
+	line-numbers = true
+	hyperlinks = true
+	# side-by-side = true # uncomment for two-column view
+[merge]
+	conflictstyle = zdiff3
+[diff]
+	colorMoved = default
+
+# --- difftastic: structural (AST-aware) diff, on demand ---
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
+[difftool]
+	prompt = false
+[alias]
+	# `git dft` = structural diff via difftastic; `git dft <commit>` for a commit
+	dft = difftool --tool difftastic
+	dlog = -c diff.external=difft log -p --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
