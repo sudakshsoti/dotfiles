@@ -67,7 +67,7 @@ alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
 
 # ask [prompt] — general / Mac / Q&A session in ~/assistant (shares home's personal memory)
-ask() { (cd ~/assistant && claude "$@"); }
+ask() { (cd ~/assistant && claude --permission-mode auto "$@"); }
 
 # wt [name] — create a worktree (random name if none given) and cd into it
 wt() {
