@@ -43,6 +43,12 @@ bold "Installing chezmoi, age, and the Bitwarden CLI"
 brew install chezmoi age bitwarden-cli >/dev/null
 ok "Tools installed"
 
+# Neovim + tree-sitter CLI (kickstart.nvim compiles treesitter parsers with it;
+# the plain `tree-sitter` formula is only the library, so install the CLI).
+bold "Installing Neovim and the tree-sitter CLI"
+brew install neovim tree-sitter-cli >/dev/null
+ok "Neovim ready (run \`nvim\` once to let vim.pack install plugins + LSP servers)"
+
 # --- 3. Restore the age key from Bitwarden --------------------------------
 if [ -f "$KEY_PATH" ]; then
   ok "Age key already present at $KEY_PATH — skipping Bitwarden restore"

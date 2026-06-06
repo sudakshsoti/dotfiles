@@ -679,16 +679,26 @@ do
   --  See `:help lsp-config` for information about keys and how to configure
   ---@type table<string, vim.lsp.Config>
   local servers = {
-    -- clangd = {},
+    -- Web stack (primary: TypeScript / React / Next.js)
+    ts_ls = {}, -- TypeScript / JavaScript / JSX / TSX
+    eslint = {}, -- Lint diagnostics for JS/TS
+    html = {},
+    cssls = {},
+
+    -- Config / data formats
+    jsonls = {},
+    yamlls = {},
+    taplo = {}, -- TOML
+
+    -- Docs & scripting
+    marksman = {}, -- Markdown
+    bashls = {}, -- Bash / shell
+    pyright = {}, -- Python
+
+    -- Other languages — uncomment as needed:
     -- gopls = {},
-    -- pyright = {},
     -- rust_analyzer = {},
-    --
-    -- Some languages (like typescript) have entire language plugins that can be useful:
-    --    https://github.com/pmizio/typescript-tools.nvim
-    --
-    -- But for many setups, the LSP (`ts_ls`) will work just fine
-    -- ts_ls = {},
+    -- clangd = {},
 
     stylua = {}, -- Used to format Lua code
 
