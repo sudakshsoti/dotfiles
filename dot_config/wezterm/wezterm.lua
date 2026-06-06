@@ -9,6 +9,21 @@
 local wezterm = require 'wezterm'
 local act = wezterm.action
 local config = wezterm.config_builder()
+local resurrect = wezterm.plugin.require('https://github.com/MLFlexer/resurrect.wezterm')
+
+-- Restore last workspace state on launch; auto-save every 5 minutes.
+wezterm.on('gui-startup', resurrect.state_manager.resurrect_on_gui_startup)
+resurrect.state_manager.periodic_save {
+  interval_seconds = 300,
+  save_workspaces = true,
+  save_windows = true,
+  save_tabs = true,
+}
+-- Write current_state after each periodic save so resurrect_on_gui_startup
+-- knows which workspace to restore on next launch.
+wezterm.on('resurrect.state_manager.periodic_save.finished', function()
+  resurrect.state_manager.write_current_state(wezterm.mux.get_active_workspace(), 'workspace')
+end)
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Theme — Kohra (cool fog-grey monochrome)
@@ -61,10 +76,10 @@ config.color_schemes = {
     tab_bar = {
       background = kohra.background,
       active_tab        = { bg_color = kohra.background, fg_color = '#d3d8da', intensity = 'Bold' },
-      inactive_tab      = { bg_color = kohra.background, fg_color = '#6a6e71' },
-      inactive_tab_hover= { bg_color = '#202325', fg_color = '#babec1', italic = false },
-      new_tab           = { bg_color = kohra.background, fg_color = '#6a6e71' },
-      new_tab_hover     = { bg_color = '#202325', fg_color = '#babec1' },
+      inactive_tab      = { bg_color = kohra.background, fg_color = '#828689' },
+      inactive_tab_hover= { bg_color = '#2b2e31', fg_color = '#babec1', italic = false },
+      new_tab           = { bg_color = kohra.background, fg_color = '#828689' },
+      new_tab_hover     = { bg_color = '#2b2e31', fg_color = '#babec1' },
     },
   },
 }
@@ -83,14 +98,13 @@ config.line_height = 1.12 -- ≈ Ghostty's adjust-cell-height = 12%
 config.harfbuzz_features = { 'calt=1', 'liga=1', 'clig=1' } -- ligatures on
 config.font_rasterizer = 'FreeType'
 config.freetype_load_target = 'Light'
-config.freetype_render_target = 'HorizontalLcd' -- crisper, slightly heavier stems
+config.freetype_render_target = 'Normal'
 config.warn_about_missing_glyphs = false
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Window & appearance
 -- ─────────────────────────────────────────────────────────────────────────────
-config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE' -- keep traffic-light buttons, drop title bar
-config.integrated_title_button_style = 'MacOsNative'
+config.window_decorations = 'TITLE | RESIZE'
 config.window_padding = { left = 12, right = 12, top = 12, bottom = 8 }
 config.window_background_opacity = 1.0
 -- For a frosted look instead, set opacity to ~0.92 and uncomment the next line:
@@ -114,7 +128,6 @@ config.enable_tab_bar = true
 config.use_fancy_tab_bar = true
 config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
-config.show_tab_index_in_tab_bar = true
 config.tab_max_width = 28
 config.window_frame = {
   font = wezterm.font { family = 'BerkeleyMonoNFM', weight = 'Regular' },
@@ -152,14 +165,19 @@ end)
 local LEFT_PAD = '    ' -- 4 spaces
 wezterm.on('update-status', function(window, _)
   window:set_left_status(wezterm.format { { Text = LEFT_PAD } })
+  -- Show the active key-table (e.g. RESIZE_PANE), or LEADER while the leader
+  -- key is armed and waiting for the next keypress.
   local name = window:active_key_table()
+  if window:leader_is_active() then
+    name = 'LEADER'
+  end
   window:set_right_status(name and ('  ' .. name:upper() .. '  ') or '')
 end)
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- Keys — leader is CTRL+a (tmux-muscle-memory); CMD bindings stay mac-native
+-- Keys — leader is CTRL+Space; CMD bindings stay mac-native
 -- ─────────────────────────────────────────────────────────────────────────────
-config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
+config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 config.keys = {
   -- Panes (mac-native CMD splits + leader splits)
@@ -199,11 +217,37 @@ config.keys = {
   { key = ' ', mods = 'CMD|SHIFT', action = act.QuickSelect },
   { key = 'u', mods = 'LEADER',    action = act.CharSelect { copy_on_select = true } }, -- emoji/unicode picker
 
+  -- Session save / restore (resurrect)
+  { key = 'w', mods = 'ALT', action = wezterm.action_callback(function(win, pane)
+      local workspace = wezterm.mux.get_active_workspace()
+      resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+      resurrect.state_manager.write_current_state(workspace, 'workspace')
+  end) },
+  { key = 'r', mods = 'ALT', action = wezterm.action_callback(function(win, pane)
+      resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, label)
+        local type = string.match(id, '^([^/]+)')
+        id = string.match(id, '([^/]+)$')
+        id = string.match(id, '(.+)%..+$')
+        local opts = { relative = true, restore_text = true,
+                       on_pane_restore = resurrect.tab_state.default_on_pane_restore }
+        if type == 'workspace' then
+          resurrect.workspace_state.restore_workspace(resurrect.state_manager.load_state(id, 'workspace'), opts)
+        elseif type == 'window' then
+          resurrect.window_state.restore_window(pane:window(), resurrect.state_manager.load_state(id, 'window'), opts)
+        elseif type == 'tab' then
+          resurrect.tab_state.restore_tab(pane:tab(), resurrect.state_manager.load_state(id, 'tab'), opts)
+        end
+      end)
+  end) },
+
   -- Font size + misc
   { key = '0', mods = 'CMD', action = act.ResetFontSize },
   { key = '=', mods = 'CMD', action = act.IncreaseFontSize },
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
-  { key = 'k', mods = 'CMD', action = act.ClearScrollback 'ScrollbackAndViewport' },
+  -- Let CMD+k pass through to the terminal app (herdr draws inline, so WezTerm's
+  -- ClearScrollback would wipe its borders/text). Use CMD+SHIFT+k to clear instead.
+  { key = 'k', mods = 'CMD',       action = act.DisableDefaultAssignment },
+  { key = 'k', mods = 'CMD|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport' },
   { key = 'Enter', mods = 'CMD', action = act.ToggleFullScreen },
 }
 
