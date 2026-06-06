@@ -244,9 +244,11 @@ config.keys = {
   { key = '0', mods = 'CMD', action = act.ResetFontSize },
   { key = '=', mods = 'CMD', action = act.IncreaseFontSize },
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
-  -- Let CMD+k pass through to the terminal app (herdr draws inline, so WezTerm's
-  -- ClearScrollback would wipe its borders/text). Use CMD+SHIFT+k to clear instead.
-  { key = 'k', mods = 'CMD',       action = act.DisableDefaultAssignment },
+  -- CMD+k clears the focused pane. WezTerm's own ClearScrollback wipes herdr's
+  -- inline borders/text, so instead forward CTRL+L into herdr; it routes to the
+  -- focused pane's shell as a real clear-screen. CMD+SHIFT+k still does a full
+  -- WezTerm-level scrollback wipe for the rare case herdr isn't running.
+  { key = 'k', mods = 'CMD',       action = act.SendKey { key = 'l', mods = 'CTRL' } },
   { key = 'k', mods = 'CMD|SHIFT', action = act.ClearScrollback 'ScrollbackAndViewport' },
   { key = 'Enter', mods = 'CMD', action = act.ToggleFullScreen },
 }
