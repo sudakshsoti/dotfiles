@@ -1,0 +1,11 @@
+# Repo documentation & scripts — these live in the repo only,
+# they should NOT be copied into the home directory by `chezmoi apply`.
+README.md
+install.sh
+FONTS.md
+CLAUDE.md
+LICENSE
+
+# Public fonts: installed manually into ~/Library/Fonts (see FONTS.md),
+# not deployed as a managed target.
+fonts
