@@ -52,4 +52,22 @@ Sublime's `variables` block is the propagation point — changing `fg` updates b
 
 ## Zed settings template
 
-`dot_config/zed/private_settings.json.tmpl` is templated; the only template variable currently in use is `{{ .zedGoogleApiKey }}` (Google API key for Zed's language model integration). When adding new secrets, prefer chezmoi template variables over committing literals.
+`dot_config/zed/private_settings.json.tmpl` is templated. The Google API key for Zed's language model integration is injected at apply time by **decrypting** an age-encrypted file in the source dir:
+
+```
+"api_key": "{{ joinPath .chezmoi.sourceDir ".zedGoogleApiKey.age" | include | decrypt | trim }}"
+```
+
+## Secrets (age encryption)
+
+This repo is **public**, so secrets are never committed in plaintext. They are encrypted with [age](https://github.com/FiloSottile/age):
+
+- `chezmoi.toml` (local, not in repo) sets `encryption = "age"` with the identity at `~/.config/chezmoi/key.txt` and the recipient public key.
+- The age **identity** (`key.txt`) is the only secret that must be carried between machines — it is backed up in Bitwarden (secure note "chezmoi age key"). Restore it to `~/.config/chezmoi/key.txt` (chmod 600) before `chezmoi apply` on a new machine.
+- Encrypted secret blobs are stored in the source dir with a leading `.` (e.g. `.zedGoogleApiKey.age`) so chezmoi treats them as data, not target files. They are ASCII-armored and safe to publish.
+
+To add a new secret:
+```bash
+printf '%s' "THE_SECRET" | age --armor -r <recipient> > .newsecret.age
+# then in a .tmpl: {{ joinPath .chezmoi.sourceDir ".newsecret.age" | include | decrypt | trim }}
+```

@@ -136,7 +136,7 @@
   },
   "language_models": {
     "google": {
-      "api_key": "{{ .zedGoogleApiKey }}",
+      "api_key": "{{ joinPath .chezmoi.sourceDir ".zedGoogleApiKey.age" | include | decrypt | trim }}",
       "available_models": [
         {
           "name": "gemini-3.1-flash-lite",
