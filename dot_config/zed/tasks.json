@@ -1,0 +1,10 @@
+[
+  {
+    "label": "auto-branch on new worktree (off origin/main)",
+    "command": "/Users/sudakshsoti/.config/zed/new-worktree-branch.sh",
+    "args": ["$ZED_WORKTREE_ROOT"],
+    "hooks": ["create_worktree"],
+    "reveal": "always",
+    "hide": "on_success"
+  }
+]
