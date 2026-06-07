@@ -89,7 +89,7 @@ config.color_scheme = 'Kohra'
 -- Font — MonoLisa Nerd Font (patched build carries its own Nerd glyphs)
 -- ─────────────────────────────────────────────────────────────────────────────
 config.font = wezterm.font_with_fallback {
-  'MonoLisaNF',
+  { family = 'MonoLisaNF', weight = 'Medium' },
   'Symbols Nerd Font Mono',
   'Apple Color Emoji',
 }
@@ -97,7 +97,7 @@ config.font_size = 13.0
 config.line_height = 1.12 -- ≈ Ghostty's adjust-cell-height = 12%
 config.harfbuzz_features = { 'calt=1', 'liga=1', 'clig=1' } -- ligatures on
 config.font_rasterizer = 'FreeType'
-config.freetype_load_target = 'Light'
+config.freetype_load_target = 'Normal' -- was 'Light' (rendered thinner stems)
 config.freetype_render_target = 'Normal'
 config.warn_about_missing_glyphs = false
 
