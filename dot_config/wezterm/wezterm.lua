@@ -86,10 +86,10 @@ config.color_schemes = {
 config.color_scheme = 'Kohra'
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- Font — Berkeley Mono Nerd Font (matches Ghostty's BerkeleyMonoNFM)
+-- Font — MonoLisa Nerd Font (patched build carries its own Nerd glyphs)
 -- ─────────────────────────────────────────────────────────────────────────────
 config.font = wezterm.font_with_fallback {
-  'BerkeleyMonoNFM',
+  'MonoLisaNF',
   'Symbols Nerd Font Mono',
   'Apple Color Emoji',
 }
@@ -130,7 +130,7 @@ config.hide_tab_bar_if_only_one_tab = true
 config.show_new_tab_button_in_tab_bar = false
 config.tab_max_width = 28
 config.window_frame = {
-  font = wezterm.font { family = 'BerkeleyMonoNFM', weight = 'Regular' },
+  font = wezterm.font { family = 'MonoLisaNF', weight = 'Regular' },
   font_size = 12.0,
   active_titlebar_bg = kohra.background,
   inactive_titlebar_bg = kohra.background,
