@@ -90,6 +90,9 @@ wt() {
   cd "$dir" && echo "✓ $name → $dir"
 }
 
+# cw [name] — create a worktree (random name if none given), cd in, launch claude in auto mode
+cw() { wt "$1" && claude --permission-mode auto; }
+
 # ============================================================
 # eza (ls replacement)
 # ============================================================
