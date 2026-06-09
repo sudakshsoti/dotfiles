@@ -16,7 +16,7 @@ bash <(curl -fsSL https://raw.githubusercontent.com/sudakshsoti/dotfiles/main/in
 ```
 
 It will:
-1. Install Homebrew, chezmoi, age, the Bitwarden CLI, and Neovim (+ tree-sitter CLI)
+1. Install Homebrew, chezmoi, age, and the Bitwarden CLI
 2. Ask you to **log in to Bitwarden** (so it can fetch your secret decryption key)
 3. Download these dotfiles and apply them — decrypting your API keys automatically
 4. Clone the private fonts repo and install MonoLisa + Berkeley Mono
@@ -162,7 +162,6 @@ bw get template item \
 | `dot_zshrc` | `~/.zshrc` | shell config |
 | `dot_gitconfig` | `~/.gitconfig` | git config |
 | `dot_config/zed/` | `~/.config/zed/` | Zed editor (settings template + themes) |
-| `dot_config/nvim/` | `~/.config/nvim/` | Neovim (kickstart.nvim + custom plugins) |
 | `dot_config/ghostty/` | `~/.config/ghostty/` | Ghostty terminal + themes |
 | `dot_config/wezterm/`, `herdr/`, `starship.toml` | `~/.config/...` | terminal stack — **herdr** multiplexer runs inside **WezTerm** |
 | `dot_cursor/` | `~/.cursor/` | Cursor editor extensions (theme packages) |

@@ -33,7 +33,7 @@ When `chezmoi diff` shows divergence on a file you didn't touch, **investigate b
 
 ## New-machine bootstrap
 
-`install.sh` is the one-command entry point (run via `curl | bash` — see README). In order it: installs Homebrew → installs `chezmoi age bitwarden-cli` and `neovim tree-sitter-cli` → restores the age key from Bitwarden → `chezmoi init --apply` → clones the private fonts repo and installs fonts. It is idempotent (safe to re-run). The `tree-sitter-cli` install matters: kickstart.nvim compiles treesitter parsers with it.
+`install.sh` is the one-command entry point (run via `curl | bash` — see README). In order it: installs Homebrew → installs `chezmoi age bitwarden-cli` → restores the age key from Bitwarden → `chezmoi init --apply` → clones the private fonts repo and installs fonts. It is idempotent (safe to re-run).
 
 Config lives in **three places**: this public repo (configs, themes, encrypted secrets, the free Atkinson font), the private `dotfiles-private` repo (paid fonts: MonoLisa, Berkeley Mono), and Bitwarden (the one secret that decrypts everything — the `chezmoi age key` note).
 
@@ -88,14 +88,6 @@ herdr itself uses a stock theme (`catppuccin` in `config.toml`), not one of the 
 ```
 
 `dot_config/zed/executable_new-worktree-branch.sh` auto-creates a branch off `origin/main` when Zed opens a new worktree.
-
-## Neovim
-
-`dot_config/nvim/` is **kickstart.nvim** (single-file-derived starter). `init.lua` is the main entrypoint. Two lua trees with different ownership:
-- `lua/kickstart/` — upstream kickstart code; treat as vendored, avoid casual edits.
-- `lua/custom/plugins/` — personal additions (e.g. `oil.lua`, `lualine.lua`). Put new plugin config here.
-
-LSP servers for the stack are enabled in `init.lua` (see recent commits). Parsers compile via `tree-sitter-cli`, which `install.sh` provides.
 
 ## Secrets (age encryption)
 
