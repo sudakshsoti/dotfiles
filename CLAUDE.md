@@ -41,8 +41,8 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 The daily driver is **herdr** (a terminal-native multiplexer / agent runtime, https://herdr.dev) running **inside WezTerm**. README/CLAUDE history predate this — WezTerm is the outer terminal, herdr is the multiplexer on top.
 
-- WezTerm config: `dot_config/wezterm/wezterm.lua` (auto-reloads on save). Leader is `CTRL+Space`; CMD bindings stay mac-native.
-- herdr config: `dot_config/herdr/config.toml`. Prefix is `ctrl+a`. herdr (v0.6.8) has **no** built-in clear-scrollback action, and its custom `[[keys.command]]` types (`shell` = detached, `pane` = throwaway pane) can't target the focused pane. It exposes a socket/CLI API instead: `herdr pane list|send-keys|run`, panes carry a `"focused"` flag, and each pane exports `$HERDR_PANE_ID` / `$HERDR_SOCKET_PATH`.
+- WezTerm config: `dot_config/wezterm/wezterm.lua` (auto-reloads on save). Leader is `CTRL+a`; CMD bindings stay mac-native.
+- herdr config: `dot_config/herdr/config.toml`. Prefix is `ctrl+space`. herdr (v0.6.8) has **no** built-in clear-scrollback action, and its custom `[[keys.command]]` types (`shell` = detached, `pane` = throwaway pane) can't target the focused pane. It exposes a socket/CLI API instead: `herdr pane list|send-keys|run`, panes carry a `"focused"` flag, and each pane exports `$HERDR_PANE_ID` / `$HERDR_SOCKET_PATH`.
 - **Gotcha:** herdr draws its panes/borders *inline* in WezTerm's grid, so WezTerm-level actions like `ClearScrollback` wipe herdr's UI. Don't bind WezTerm clear actions for use inside herdr — forward a key into the pane instead. Example already in `wezterm.lua`: `Cmd+K` → `act.SendKey { key = 'l', mods = 'CTRL' }` (clear-screen routed to the focused pane's shell).
 
 ## Theme architecture
