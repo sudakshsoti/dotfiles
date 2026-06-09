@@ -277,7 +277,9 @@ config.key_tables = {
 -- Mouse & hyperlinks
 -- ─────────────────────────────────────────────────────────────────────────────
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
--- CMD+click opens links; also linkify bare file paths and localhost URLs.
+-- Click opens links (default mouse binding); inside herdr, Shift+click —
+-- Shift bypasses herdr's mouse capture so WezTerm handles the click.
+-- Also linkify bare file paths and localhost URLs.
 table.insert(config.hyperlink_rules, {
   regex = [[\b(localhost:\d+\S*)\b]],
   format = 'http://$1',
