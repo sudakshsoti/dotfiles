@@ -175,9 +175,9 @@ wezterm.on('update-status', function(window, _)
 end)
 
 -- ─────────────────────────────────────────────────────────────────────────────
--- Keys — leader is CTRL+Space; CMD bindings stay mac-native
+-- Keys — leader is CTRL+a; CMD bindings stay mac-native
 -- ─────────────────────────────────────────────────────────────────────────────
-config.leader = { key = 'Space', mods = 'CTRL', timeout_milliseconds = 2000 }
+config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 2000 }
 
 config.keys = {
   -- Panes (mac-native CMD splits + leader splits)

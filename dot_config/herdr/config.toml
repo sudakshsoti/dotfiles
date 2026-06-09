@@ -1,7 +1,7 @@
 onboarding = false
 
 [keys]
-prefix = "ctrl+a"
+prefix = "ctrl+space"
 
 # Desktop notifications for background agent events.
 [ui.toast]
