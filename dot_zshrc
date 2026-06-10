@@ -93,6 +93,25 @@ wt() {
 # cw [name] — create a worktree (random name if none given), cd in, launch claude in auto mode
 cw() { wt "$1" && claude --permission-mode auto; }
 
+# wtdone — from inside a worktree, return to main and remove the worktree + its branch
+wtdone() {
+  emulate -L zsh
+  local wt branch main_path main_branch
+  wt=$(git rev-parse --show-toplevel) || return 1
+  branch=$(git rev-parse --abbrev-ref HEAD)
+  main_path=$(git worktree list --porcelain | awk 'NR==1 {print $2}')
+  [[ "$wt" == "$main_path" ]] && { echo "wtdone: in the main worktree." >&2; return 1; }
+  main_branch=$(git -C "$main_path" rev-parse --abbrev-ref HEAD)
+  # refuse early if branch has commits not in the main branch
+  if [[ -n "$(git log --oneline "$main_branch".."$branch" 2>/dev/null)" ]]; then
+    echo "wtdone: $branch has commits not in $main_branch — merge or discard first." >&2
+    return 1
+  fi
+  cd "$main_path" || return 1
+  git worktree remove "$wt" && git branch -d "$branch" \
+    && echo "Removed worktree $wt and branch $branch"
+}
+
 # ============================================================
 # eza (ls replacement)
 # ============================================================
