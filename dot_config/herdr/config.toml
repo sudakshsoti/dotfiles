@@ -39,3 +39,10 @@ blue        = "#83bee5"   # accent/blue
 teal        = "#7ac8b3"   # accent/teal-bright
 peach       = "#e2a687"   # accent/orange
 accent      = "#4f7791"   # blue-muted     — dim selected-pane stroke
+
+# On preview: stable 0.6.8 had a clipboard flush-lag bug (select auto-copied via
+# OSC 52, but the write landed one event late, so the first paste was stale).
+# Preview switched to explicit Cmd+C copy, which is deterministic. Revisit once
+# the fix reaches stable.
+[update]
+channel = "preview"
