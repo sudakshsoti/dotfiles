@@ -144,6 +144,7 @@ alias gmc="git merge --continue"
 alias gst="git stash"
 alias gstp="git stash pop"
 alias lg="lazygit"
+alias zcd="zellij -l claude-diff"  # Zellij claude-diff layout: agent shell + revdiff review rail
 
 # ============================================================
 # System

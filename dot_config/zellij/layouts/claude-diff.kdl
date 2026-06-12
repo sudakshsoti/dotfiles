@@ -1,0 +1,30 @@
+// Claude Code workspace layout — launch with `zellij -l claude-diff`.
+// Wide agent pane (run `claude` yourself) + a revdiff review rail beside it.
+// A custom layout must re-declare the bars or the builtin chrome won't load,
+// so the zellaude top bar + status bar from default.kdl are kept.
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="https://github.com/ishefi/zellaude/releases/latest/download/zellaude.wasm"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="claude" focus=true {
+        pane split_direction="vertical" {
+            // Wide pane, focused on open — a plain shell. Launch `claude` here
+            // yourself when ready (it creates its own worktree).
+            pane size="70%" focus=true name="agent"
+            // revdiff rail — annotatable branch-vs-main review TUI. One-shot:
+            // reload with R to pull in the agent's latest edits, quit with q.
+            // Quitting drops into a normal interactive shell. For a *live*
+            // auto-refreshing diff, run `lg` (lazygit) from this pane.
+            pane size="30%" name="review" command="zsh" {
+                args "-c" "revdiff; exec zsh"
+            }
+        }
+    }
+}
