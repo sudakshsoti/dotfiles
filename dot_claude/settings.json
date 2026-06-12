@@ -10,11 +10,6 @@
     ],
     "defaultMode": "bypassPermissions"
   },
-  "statusLine": {
-    "type": "command",
-    "command": "ccline --theme cometix-kohra",
-    "padding": 0
-  },
   "enabledPlugins": {
     "frontend-design@claude-plugins-official": true,
     "vercel@claude-plugins-official": true,
@@ -37,5 +32,9 @@
   "preferredNotifChannel": "notifications_disabled",
   "remoteControlAtStartup": false,
   "agentPushNotifEnabled": false,
-  "skipAutoPermissionPrompt": true
+  "skipAutoPermissionPrompt": true,
+  "statusLine": {
+    "type": "command",
+    "command": "/Users/sudakshsoti/.claude/statusline-command.sh"
+  }
 }
