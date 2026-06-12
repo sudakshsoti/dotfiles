@@ -24,7 +24,7 @@ layout {
             // prompt. For a *live* (auto-refreshing) diff to stage/discard/commit,
             // run `lg` (lazygit) from this pane — lazygit refreshes on filesystem
             // changes; revdiff is the deeper, snapshot-at-a-time review surface.
-            pane size="30%" name="review" command="zsh" {
+            pane size="30%" name="review" command="zsh" close_on_exit=true {
                 args "-c" "revdiff; exec zsh"
             }
         }
