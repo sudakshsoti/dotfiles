@@ -12,7 +12,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "ccline --theme cometix-vesper",
+    "command": "ccline --theme cometix-kohra",
     "padding": 0
   },
   "enabledPlugins": {
