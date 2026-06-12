@@ -1,0 +1,150 @@
+// kohra — Kohra ported to Zellij. Unlike vesper-dim / nord-dim (which fork a
+// built-in), Zellij ships no Kohra base, so this is hand-authored from the Kohra
+// cross-app palette (see dot_config/ghostty/themes/kohra-ghostty). Cool fog-grey
+// monochrome; the signature blue accent (78accf → 120 172 207) is used for the
+// selected status-bar ribbon and active frame.
+//
+// Status bar is dark by default: the base bg (181b1d → 24 27 29) is already the
+// darkest tone, so ribbon_unselected.background uses it directly — no separate
+// "dim" fork is needed the way the near-white built-ins require.
+//
+// Palette → token map:
+//   bg        24 27 29   181b1d   darkest base / dark chips / selected fills
+//   surface   43 46 49   2b2e31   lighter surface (unselected cells/lists)
+//   border    74 77 80   4a4d50   inactive pane frame (bright-black)
+//   fg        186 190 193 babec1  body text
+//   fg_bright 211 216 218 d3d8da  emphasised text
+//   accent    120 172 207 78accf  blue — selected ribbon / active frame
+//   emphasis_0 210 165 109 d2a56d orange/yellow
+//   emphasis_1 101 193 181 65c1b5 cyan
+//   emphasis_2 164 183 118 a4b776 green
+//   emphasis_3 213 152 192 d598c0 magenta
+//   red       180 103 104 b46768  errors
+themes {
+    kohra {
+        text_unselected {
+            base 186 190 193
+            background 43 46 49
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        text_selected {
+            base 211 216 218
+            background 43 46 49
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        ribbon_selected {
+            base 24 27 29
+            background 120 172 207
+            emphasis_0 180 103 104
+            emphasis_1 210 165 109
+            emphasis_2 213 152 192
+            emphasis_3 164 183 118
+        }
+        ribbon_unselected {
+            base 186 190 193
+            background 24 27 29
+            emphasis_0 210 165 109
+            emphasis_1 211 216 218
+            emphasis_2 101 193 181
+            emphasis_3 213 152 192
+        }
+        table_title {
+            base 120 172 207
+            background 0
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        table_cell_selected {
+            base 211 216 218
+            background 24 27 29
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        table_cell_unselected {
+            base 186 190 193
+            background 43 46 49
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        list_selected {
+            base 211 216 218
+            background 24 27 29
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        list_unselected {
+            base 186 190 193
+            background 43 46 49
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        frame_unselected {
+            base 74 77 80
+            background 0
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 164 183 118
+            emphasis_3 213 152 192
+        }
+        frame_selected {
+            base 120 172 207
+            background 0
+            emphasis_0 210 165 109
+            emphasis_1 101 193 181
+            emphasis_2 213 152 192
+            emphasis_3 0
+        }
+        frame_highlight {
+            base 210 165 109
+            background 0
+            emphasis_0 213 152 192
+            emphasis_1 210 165 109
+            emphasis_2 210 165 109
+            emphasis_3 210 165 109
+        }
+        exit_code_success {
+            base 164 183 118
+            background 0
+            emphasis_0 101 193 181
+            emphasis_1 24 27 29
+            emphasis_2 213 152 192
+            emphasis_3 120 172 207
+        }
+        exit_code_error {
+            base 180 103 104
+            background 0
+            emphasis_0 210 165 109
+            emphasis_1 0
+            emphasis_2 0
+            emphasis_3 0
+        }
+        multiplayer_user_colors {
+            player_1 213 152 192
+            player_2 120 172 207
+            player_3 0
+            player_4 210 165 109
+            player_5 101 193 181
+            player_6 0
+            player_7 180 103 104
+            player_8 0
+            player_9 0
+            player_10 0
+        }
+    }
+}

@@ -1,48 +1,18 @@
-// Zellij config — stock defaults, theme set to vesper-dim (built-in Vesper with a
-// darkened status bar — see themes/vesper-dim.kdl; nord-dim is the muted alt).
+// Zellij config — stock defaults, theme set to kohra (cool fog-grey monochrome
+// with a blue accent, hand-authored from the Kohra cross-app palette — see
+// themes/kohra.kdl; vesper-dim and nord-dim are the dimmed built-in alts).
 // Everything not set here uses Zellij's compiled-in defaults
 // (run `zellij setup --dump-config` to see the full default set).
 
-theme "vesper-dim"
+theme "kohra"
 
 // ── Plugins ───────────────────────────────────────────────────────────────────
-// All loaded from release URLs (no binaries in the repo). First launch prompts
+// Loaded from release URLs (no binaries in the repo). First launch prompts
 // once per plugin to approve permissions — press `y` in the plugin pane.
 // The Claude-Code-aware tab bar (zellaude) lives in layouts/default.kdl, since
 // it replaces the native tab bar.
-plugins {
-    // Auto-locks Zellij while a TUI owns the focused pane (Claude Code, nvim,
-    // lazygit, fzf…) so Zellij's Ctrl prefix stops colliding with the app's
-    // own keybinds. Unlocks again when you return to a plain shell.
-    autolock location="https://github.com/fresh2dev/zellij-autolock/releases/latest/download/zellij-autolock.wasm" {
-        is_enabled true
-        triggers "nvim|vim|git|fzf|zoxide|atuin|claude|lazygit"
-        reaction_seconds "0.3"
-        print_to_log false
-    }
-}
-
-// Background-load autolock so it can watch the focused pane from startup.
-load_plugins {
-    autolock
-}
 
 keybinds {
-    // autolock re-evaluates the focused command on each prompt submission;
-    // this preserves a normal Enter while notifying the plugin.
-    normal {
-        bind "Enter" {
-            WriteChars "\u{000D}"
-            MessagePlugin "autolock"
-        }
-    }
-    // Manually break out of an auto-lock without running a new command.
-    locked {
-        bind "Alt z" {
-            MessagePlugin "autolock" { payload "disable"; }
-            SwitchToMode "Normal"
-        }
-    }
     // Fuzzy project → session switcher over ~/dev (tmux-sessionizer style).
     // Reach it via the tmux prefix (Ctrl+b) then `g`.
     tmux {
