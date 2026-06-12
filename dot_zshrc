@@ -65,7 +65,6 @@ alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
-alias zc="zellij --layout claude"  # open the Claude workspace layout in Zellij
 
 # ask [prompt] — general / Mac / Q&A session in ~/assistant (shares home's personal memory)
 ask() { (cd ~/assistant && claude --permission-mode auto "$@"); }
@@ -145,7 +144,6 @@ alias gmc="git merge --continue"
 alias gst="git stash"
 alias gstp="git stash pop"
 alias lg="lazygit"
-alias rd="revdiff"  # one-shot review TUI; auto-floats in Zellij. Reviews branch vs main, q to quit, R to reload
 
 # ============================================================
 # System
@@ -204,23 +202,6 @@ bindkey '^[[B' history-substring-search-down
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ============================================================
-# Zellij — name the tab after the git repo you're in
-# ============================================================
-# Zellij has no built-in cwd/repo display; the tab bar shows "Tab #1" until
-# something renames it. Rename to the git repo root name (answers "what project
-# am I in" even when deep inside it), falling back to the dir basename outside a
-# repo. Fires on every cd via chpwd, and once on shell start.
-_zellij_tab_name() {
-  [[ -z "$ZELLIJ" ]] && return   # only inside a Zellij session
-  local name
-  name=$(git rev-parse --show-toplevel 2>/dev/null) && name=${name:t} || name=${PWD:t}
-  zellij action rename-tab "$name" 2>/dev/null
-}
-autoload -Uz add-zsh-hook
-add-zsh-hook chpwd _zellij_tab_name
-_zellij_tab_name
-
-# ============================================================
 # zoxide (must be initialized last — hooks chpwd, not ZLE)
 # ============================================================
 export _ZO_DOCTOR=0  # suppress the "initialize last" warning (already last; only fires in TTY-less spawns)
@@ -237,17 +218,3 @@ alias gdft='GIT_EXTERNAL_DIFF=difft git diff'   # git diff rendered by difftasti
 # ============================================================
 alias gwipe='git reset --hard HEAD'                       # DESTRUCTIVE: discard all uncommitted tracked changes
 alias gpark='git stash push -u -m "gpark $(date +%F\ %T)"' # safe: stash all changes (incl. untracked); restore w/ git stash pop
-
-# ============================================================
-# Auto-launch Zellij inside WezTerm (replaces the old manual herdr launch)
-# ============================================================
-# Drop into the `claude` layout when a WezTerm shell opens. Guards:
-#   -t 0/-t 1    : real TTY only — skip the TTY-less `zsh -i` snapshot spawns
-#                  some tools (e.g. Claude Code) use, so they don't fire Zellij.
-#   $ZELLIJ      : already inside a session — don't nest.
-#   $WEZTERM_PANE: only in WezTerm, not other terminals (Ghostty, etc).
-# Manual launch any time with `zc`. Exiting Zellij drops back to this shell
-# (swap in `exec zellij ...` if you'd rather closing Zellij close the window).
-if [[ -t 0 && -t 1 && -z "$ZELLIJ" && -n "$WEZTERM_PANE" ]]; then
-  zellij --layout claude
-fi

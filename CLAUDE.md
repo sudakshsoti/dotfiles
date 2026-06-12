@@ -39,11 +39,11 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 ## Terminal stack
 
-The daily driver is **Zellij** (a terminal multiplexer, https://zellij.dev) running **inside WezTerm**. WezTerm is the outer terminal, Zellij is the multiplexer on top. This replaced **herdr** (an agent-runtime multiplexer, https://herdr.dev), which was dropped over flicker and a broken resize binding; `dot_config/herdr/` is retained for reference but no longer the driver.
+The daily driver is **herdr** (a terminal-native multiplexer / agent runtime, https://herdr.dev) running **inside WezTerm**. README/CLAUDE history predate this — WezTerm is the outer terminal, herdr is the multiplexer on top.
 
 - WezTerm config: `dot_config/wezterm/wezterm.lua` (auto-reloads on save). Leader is `CTRL+a`; CMD bindings stay mac-native.
-- Zellij config: `dot_config/zellij/config.kdl`. Theme `kohra` lives in `dot_config/zellij/themes/kohra.kdl` (separate file, mirror-able like the Zed/Ghostty theme targets). `simplified_ui true` de-powerlines the full tab + status bars; pane frames are on with rounded corners; session serialization gives herdr-style detach/reattach persistence. Resize works correctly (`Ctrl+n` then `h/j/k/l` both grows and shrinks — the herdr bug this migration fixed).
-- Layout: `dot_config/zellij/layouts/claude.kdl` → `zellij --layout claude` opens a wide Claude Code agent pane (70%) beside a narrow shell. A custom layout must re-declare the `zellij:tab-bar` / `zellij:status-bar` plugins or the builtin chrome won't load.
+- herdr config: `dot_config/herdr/config.toml`. Prefix is `ctrl+space`. herdr (v0.6.8) has **no** built-in clear-scrollback action, and its custom `[[keys.command]]` types (`shell` = detached, `pane` = throwaway pane) can't target the focused pane. It exposes a socket/CLI API instead: `herdr pane list|send-keys|run`, panes carry a `"focused"` flag, and each pane exports `$HERDR_PANE_ID` / `$HERDR_SOCKET_PATH`.
+- **Gotcha:** herdr draws its panes/borders *inline* in WezTerm's grid, so WezTerm-level actions like `ClearScrollback` wipe herdr's UI. Don't bind WezTerm clear actions for use inside herdr — forward a key into the pane instead. Example already in `wezterm.lua`: `Cmd+K` → `act.SendKey { key = 'l', mods = 'CTRL' }` (clear-screen routed to the focused pane's shell).
 
 ## Theme architecture
 
@@ -52,7 +52,7 @@ Three custom themes each ship across **multiple** apps. Any colour change must b
 | Theme | Apps it spans |
 |---|---|
 | **Vesper Dimmed** | Zed, Sublime Text, Ghostty |
-| **Kohra** | WezTerm (inline `config.color_schemes`), Zellij, Zed, Ghostty, Cursor (extension) |
+| **Kohra** | WezTerm (inline `config.color_schemes`), Zed, Ghostty, Cursor (extension) |
 | **Editorial Code** | Zed, Sublime Text, Ghostty, Cursor (extension) |
 
 Per-format locations:
@@ -63,7 +63,6 @@ Per-format locations:
 | `private_Library/.../Sublime Text/.../*.sublime-color-scheme` | Sublime | JSON; named `variables` referenced by scope rules |
 | `dot_config/ghostty/themes/*` | Ghostty | `key = value`; terminal palette + selection |
 | `dot_config/wezterm/wezterm.lua` (`config.color_schemes`) | WezTerm | Lua table; terminal palette + tab bar |
-| `dot_config/zellij/themes/*.kdl` | Zellij | KDL `themes` node; 16-colour hex set, full UI derived from it |
 | `dot_cursor/extensions/*/themes/*.json` | Cursor | VS Code theme JSON (packaged as an extension) |
 
 Notes specific to Vesper Dimmed (the most worked-on theme):
@@ -71,7 +70,7 @@ Notes specific to Vesper Dimmed (the most worked-on theme):
 - The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal formats have no equivalents.
 - **Hue discipline:** neutrals are warm (hue ~40°). Derive new greys from that ramp; pure greys (`#1A1A1A`, `#101010`) are no longer in use.
 
-Zellij carries the Kohra theme (`dot_config/zellij/themes/kohra.kdl`); it derives its full themed UI — tab ribbons, pane frames, status bar — from the 16-colour hex set, so keep those slots in sync with the `kohra` table in `wezterm.lua`. (The retired herdr config used a stock `catppuccin` theme, not one of the custom three.)
+herdr itself uses a stock theme (`catppuccin` in `config.toml`), not one of the custom three.
 
 ## Sync workflow for theme/config edits
 
