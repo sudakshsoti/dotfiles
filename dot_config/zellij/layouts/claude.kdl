@@ -19,9 +19,12 @@ layout {
             // yourself when ready (it creates its own worktree).
             pane size="70%" focus=true name="agent"
             // Lazygit rail — auto-refreshes on filesystem changes, so the agent's
-            // edits stream in as a live diff to stage/discard/commit. Quitting
+            // edits stream in as a *live* diff to stage/discard/commit. Quitting
             // lazygit (q) drops into a normal interactive shell rather than a
-            // re-run prompt.
+            // re-run prompt. For a deeper, annotatable branch-vs-main review run
+            // `rd` (revdiff) from any pane — it auto-floats as a Zellij overlay.
+            // (revdiff is one-shot: reload with R, quit with q — not live, which
+            // is why lazygit, not revdiff, holds the live rail.)
             pane size="30%" name="git" command="zsh" {
                 args "-c" "lazygit; exec zsh"
             }

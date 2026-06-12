@@ -145,6 +145,7 @@ alias gmc="git merge --continue"
 alias gst="git stash"
 alias gstp="git stash pop"
 alias lg="lazygit"
+alias rd="revdiff"  # one-shot review TUI; auto-floats in Zellij. Reviews branch vs main, q to quit, R to reload
 
 # ============================================================
 # System
