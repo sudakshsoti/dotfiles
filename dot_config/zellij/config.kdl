@@ -1,0 +1,40 @@
+// Zellij config — managed by chezmoi (dot_config/zellij/config.kdl).
+// Replaces herdr as the terminal-native multiplexer running inside WezTerm.
+// Theme lives in themes/kohra.kdl so it stays a separate, mirror-able file
+// like the Zed/Ghostty theme targets.
+
+theme "kohra"
+
+// Full chrome (tab bar + status bar) but de-powerlined: simplified_ui drops the
+// arrow/triangle glyphs so the bars read as clean blocks in the Kohra monochrome.
+simplified_ui true
+
+// Real pane borders, softened to match the rounded look of the rest of the stack.
+pane_frames true
+ui {
+    pane_frames {
+        rounded_corners true
+        hide_session_name false
+    }
+}
+
+// macOS clipboard — copy-on-select yanks straight into the system pasteboard.
+copy_command "pbcopy"
+copy_clipboard "system"
+copy_on_select true
+
+// Don't nuke the session server when the last client detaches — herdr-style
+// persistence: close the terminal / drop SSH and reattach to the same panes.
+session_serialization true
+pane_viewport_serialization true
+
+// Sensible defaults
+default_mode "normal"
+mouse_mode true
+scroll_buffer_size 20000
+// scrollback_editor defaults to $EDITOR — set it explicitly if you want a
+// specific TUI editor for the "edit scrollback" action (Ctrl+s then e).
+
+// Keep Zellij's default keybindings (resize mode = Ctrl+n, then h/j/k/l grows
+// AND shrinks correctly — the herdr resize bug this migration fixes). Add custom
+// binds below a `keybinds { ... }` block later if needed.

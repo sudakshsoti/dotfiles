@@ -1,0 +1,26 @@
+// Claude Code workspace layout — launch with `zellij --layout claude`.
+// Wide agent pane (Claude Code) + a narrow shell beside it for git/tests/logs.
+// A custom layout must re-declare the tab-bar/status-bar plugins, otherwise the
+// builtin chrome won't load — so the full themed bars from config.kdl are kept.
+layout {
+    default_tab_template {
+        pane size=1 borderless=true {
+            plugin location="zellij:tab-bar"
+        }
+        children
+        pane size=2 borderless=true {
+            plugin location="zellij:status-bar"
+        }
+    }
+
+    tab name="claude" focus=true {
+        pane split_direction="vertical" {
+            // The agent — 70% width, focused on open.
+            pane size="70%" focus=true name="agent" {
+                command "claude"
+            }
+            // Plain shell for git / running tests / tailing logs alongside it.
+            pane size="30%" name="shell"
+        }
+    }
+}
