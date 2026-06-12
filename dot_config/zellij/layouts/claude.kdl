@@ -15,10 +15,9 @@ layout {
 
     tab name="claude" focus=true {
         pane split_direction="vertical" {
-            // The agent — 70% width, focused on open.
-            pane size="70%" focus=true name="agent" {
-                command "claude"
-            }
+            // Wide pane, focused on open — a plain shell. Launch `claude` here
+            // yourself when ready (it creates its own worktree).
+            pane size="70%" focus=true name="agent"
             // Plain shell for git / running tests / tailing logs alongside it.
             pane size="30%" name="shell"
         }

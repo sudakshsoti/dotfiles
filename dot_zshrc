@@ -65,6 +65,7 @@ alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
+alias zc="zellij --layout claude"  # open the Claude workspace layout in Zellij
 
 # ask [prompt] — general / Mac / Q&A session in ~/assistant (shares home's personal memory)
 ask() { (cd ~/assistant && claude --permission-mode auto "$@"); }
@@ -218,3 +219,17 @@ alias gdft='GIT_EXTERNAL_DIFF=difft git diff'   # git diff rendered by difftasti
 # ============================================================
 alias gwipe='git reset --hard HEAD'                       # DESTRUCTIVE: discard all uncommitted tracked changes
 alias gpark='git stash push -u -m "gpark $(date +%F\ %T)"' # safe: stash all changes (incl. untracked); restore w/ git stash pop
+
+# ============================================================
+# Auto-launch Zellij inside WezTerm (replaces the old manual herdr launch)
+# ============================================================
+# Drop into the `claude` layout when a WezTerm shell opens. Guards:
+#   -t 0/-t 1    : real TTY only — skip the TTY-less `zsh -i` snapshot spawns
+#                  some tools (e.g. Claude Code) use, so they don't fire Zellij.
+#   $ZELLIJ      : already inside a session — don't nest.
+#   $WEZTERM_PANE: only in WezTerm, not other terminals (Ghostty, etc).
+# Manual launch any time with `zc`. Exiting Zellij drops back to this shell
+# (swap in `exec zellij ...` if you'd rather closing Zellij close the window).
+if [[ -t 0 && -t 1 && -z "$ZELLIJ" && -n "$WEZTERM_PANE" ]]; then
+  zellij --layout claude
+fi
