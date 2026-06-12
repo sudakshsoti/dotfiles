@@ -204,6 +204,23 @@ bindkey '^[[B' history-substring-search-down
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # ============================================================
+# Zellij — name the tab after the git repo you're in
+# ============================================================
+# Zellij has no built-in cwd/repo display; the tab bar shows "Tab #1" until
+# something renames it. Rename to the git repo root name (answers "what project
+# am I in" even when deep inside it), falling back to the dir basename outside a
+# repo. Fires on every cd via chpwd, and once on shell start.
+_zellij_tab_name() {
+  [[ -z "$ZELLIJ" ]] && return   # only inside a Zellij session
+  local name
+  name=$(git rev-parse --show-toplevel 2>/dev/null) && name=${name:t} || name=${PWD:t}
+  zellij action rename-tab "$name" 2>/dev/null
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook chpwd _zellij_tab_name
+_zellij_tab_name
+
+# ============================================================
 # zoxide (must be initialized last — hooks chpwd, not ZLE)
 # ============================================================
 export _ZO_DOCTOR=0  # suppress the "initialize last" warning (already last; only fires in TTY-less spawns)
