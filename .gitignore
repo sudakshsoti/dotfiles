@@ -1,5 +1,8 @@
 .DS_Store
 
+# Claude Code local worktrees — transient, machine-local state
+/.claude/worktrees/
+
 # Zellij: ignore the dir's contents by default, but track the hand-written
 # configs. Any NEW top-level entry stays ignored until negated here (so runtime
 # cruft never sneaks in), while config.kdl + layouts/ + themes/ track normally.
