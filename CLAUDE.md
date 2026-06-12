@@ -42,7 +42,10 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 The current stack is **Ghostty** (outer terminal) → **Zellij** (multiplexer) → **Starship** (prompt). This has churned repeatedly — earlier iterations used WezTerm as the terminal and herdr (https://herdr.dev) as the multiplexer; both are now removed. If something in this repo or in older git history references `dot_config/wezterm/` or `dot_config/herdr/`, treat it as dead. **Verify the live stack before acting on it** — `which ghostty zellij`, `chezmoi managed | grep -E 'ghostty|zellij'`.
 
 - Ghostty config: `dot_config/ghostty/config`; palettes under `dot_config/ghostty/themes/` (one per custom theme — see Theme architecture).
-- Zellij config: `dot_config/zellij/config.kdl`. Deliberately minimal — stock compiled-in defaults with only `theme "kanagawa"` (a Zellij built-in, not one of the custom three) overridden. `zellij setup --dump-config` prints the full default set; `zellij setup --check` validates the live config.
+- Zellij config: `dot_config/zellij/config.kdl` — stock compiled-in defaults with `theme "vesper-dim"` plus three plugins. Two **custom** themes live in `dot_config/zellij/themes/`: `vesper-dim` (active) and `nord-dim` (muted alt). Each forks a built-in (vesper / nord) with one change — `ribbon_unselected.background` darkened so the status-bar keybind chips read dark, not bright (every built-in ships a *light* unselected-ribbon bg, so a dark bottom bar requires a fork). Neither is one of the custom three cross-app themes. `zellij setup --dump-config` prints the full default set; `zellij setup --check` validates config.kdl (but **not** layouts).
+  - **Plugins are loaded from release URLs** (no `.wasm` binaries in the repo), so first launch prompts once per plugin to grant permissions (`y`). They are: `zellij-autolock` (auto-locks while a TUI owns the focused pane — Claude Code/nvim/lazygit — so the Ctrl prefix stops colliding) and `zellij-sessionizer` (fuzzy project→session switcher over `~/dev`, bound to the tmux prefix then `g`).
+  - `dot_config/zellij/layouts/default.kdl` swaps the native tab bar for **zellaude** (`ishefi/zellaude`), a Claude-Code-aware bar: per-session activity, macOS notifications + pulse on permission prompts, click ⚠ to focus that pane. **Caveat:** on first load zellaude writes `~/.config/zellij/plugins/zellaude-hook.sh` and registers it in `~/.claude/settings.json` — that live edit diverges from `dot_claude/settings.json` and must be captured back into the chezmoi source. Needs `terminal-notifier` (brew) for click-to-focus.
+  - Config/keybind changes only take effect in **new** sessions — Zellij does not hot-reload config into running sessions.
 - Starship prompt: `dot_config/starship.toml`.
 
 ## Theme architecture
@@ -69,7 +72,7 @@ Notes specific to Vesper Dimmed (the most worked-on theme):
 - The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal formats have no equivalents.
 - **Hue discipline:** neutrals are warm (hue ~40°). Derive new greys from that ramp; pure greys (`#1A1A1A`, `#101010`) are no longer in use.
 
-The multiplexer (Zellij) uses the built-in `kanagawa` theme, not one of the custom three — it is **not** a theme-mirror target, so a colour change never touches `dot_config/zellij/`.
+The multiplexer (Zellij) uses `vesper-dim` (a local fork of a built-in, in `dot_config/zellij/themes/`), not one of the custom three — it is **not** a theme-mirror target, so changing one of the three cross-app themes never touches `dot_config/zellij/`.
 
 ## Sync workflow for theme/config edits
 
