@@ -1,9 +1,12 @@
 // Zellij config — managed by chezmoi (dot_config/zellij/config.kdl).
 // Replaces herdr as the terminal-native multiplexer running inside WezTerm.
 //
-// Appearance is intentionally left at Zellij's defaults — no theme, no
-// simplified_ui, no pane_frame overrides. The custom "kohra" theme still lives
-// in themes/kohra.kdl if you want to opt back in with `theme "kohra"`.
+// Theme: "vesper-dim" (themes/vesper-dim.kdl) — the shipped "vesper" built-in,
+// forked to darken the over-bright white status-bar chips and brighten UI text.
+// Bars/frames otherwise left at Zellij defaults. The custom "kohra" theme still
+// lives in themes/kohra.kdl for opt-in; plain "vesper" is the stock built-in.
+
+theme "vesper-dim"
 
 // macOS clipboard — copy-on-select yanks straight into the system pasteboard.
 copy_command "pbcopy"
