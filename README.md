@@ -163,7 +163,7 @@ bw get template item \
 | `dot_gitconfig` | `~/.gitconfig` | git config |
 | `dot_config/zed/` | `~/.config/zed/` | Zed editor (settings template + themes) |
 | `dot_config/ghostty/` | `~/.config/ghostty/` | Ghostty terminal + themes |
-| `dot_config/wezterm/`, `herdr/`, `starship.toml` | `~/.config/...` | terminal stack — **herdr** multiplexer runs inside **WezTerm** |
+| `dot_config/zellij/`, `dot_config/starship.toml` | `~/.config/...` | terminal stack — **Zellij** multiplexer + **Starship** prompt, inside **Ghostty** |
 | `dot_cursor/` | `~/.cursor/` | Cursor editor extensions (theme packages) |
 | `private_Library/` | `~/Library/` | Sublime Text settings & themes |
 | `.zedGoogleApiKey.age` | — | encrypted secret (data, not a deployed file) |

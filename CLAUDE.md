@@ -39,11 +39,11 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 ## Terminal stack
 
-The daily driver is **herdr** (a terminal-native multiplexer / agent runtime, https://herdr.dev) running **inside WezTerm**. README/CLAUDE history predate this — WezTerm is the outer terminal, herdr is the multiplexer on top.
+The current stack is **Ghostty** (outer terminal) → **Zellij** (multiplexer) → **Starship** (prompt). This has churned repeatedly — earlier iterations used WezTerm as the terminal and herdr (https://herdr.dev) as the multiplexer; both are now removed. If something in this repo or in older git history references `dot_config/wezterm/` or `dot_config/herdr/`, treat it as dead. **Verify the live stack before acting on it** — `which ghostty zellij`, `chezmoi managed | grep -E 'ghostty|zellij'`.
 
-- WezTerm config: `dot_config/wezterm/wezterm.lua` (auto-reloads on save). Leader is `CTRL+a`; CMD bindings stay mac-native.
-- herdr config: `dot_config/herdr/config.toml`. Prefix is `ctrl+space`. herdr (v0.6.8) has **no** built-in clear-scrollback action, and its custom `[[keys.command]]` types (`shell` = detached, `pane` = throwaway pane) can't target the focused pane. It exposes a socket/CLI API instead: `herdr pane list|send-keys|run`, panes carry a `"focused"` flag, and each pane exports `$HERDR_PANE_ID` / `$HERDR_SOCKET_PATH`.
-- **Gotcha:** herdr draws its panes/borders *inline* in WezTerm's grid, so WezTerm-level actions like `ClearScrollback` wipe herdr's UI. Don't bind WezTerm clear actions for use inside herdr — forward a key into the pane instead. Example already in `wezterm.lua`: `Cmd+K` → `act.SendKey { key = 'l', mods = 'CTRL' }` (clear-screen routed to the focused pane's shell).
+- Ghostty config: `dot_config/ghostty/config`; palettes under `dot_config/ghostty/themes/` (one per custom theme — see Theme architecture).
+- Zellij config: `dot_config/zellij/config.kdl`. Deliberately minimal — stock compiled-in defaults with only `theme "kanagawa"` (a Zellij built-in, not one of the custom three) overridden. `zellij setup --dump-config` prints the full default set; `zellij setup --check` validates the live config.
+- Starship prompt: `dot_config/starship.toml`.
 
 ## Theme architecture
 
@@ -52,7 +52,7 @@ Three custom themes each ship across **multiple** apps. Any colour change must b
 | Theme | Apps it spans |
 |---|---|
 | **Vesper Dimmed** | Zed, Sublime Text, Ghostty |
-| **Kohra** | WezTerm (inline `config.color_schemes`), Zed, Ghostty, Cursor (extension) |
+| **Kohra** | Zed, Ghostty, Cursor (extension) |
 | **Editorial Code** | Zed, Sublime Text, Ghostty, Cursor (extension) |
 
 Per-format locations:
@@ -62,7 +62,6 @@ Per-format locations:
 | `dot_config/zed/themes/*.json` | Zed | Zed v0.2.0 theme schema (full UI + syntax) |
 | `private_Library/.../Sublime Text/.../*.sublime-color-scheme` | Sublime | JSON; named `variables` referenced by scope rules |
 | `dot_config/ghostty/themes/*` | Ghostty | `key = value`; terminal palette + selection |
-| `dot_config/wezterm/wezterm.lua` (`config.color_schemes`) | WezTerm | Lua table; terminal palette + tab bar |
 | `dot_cursor/extensions/*/themes/*.json` | Cursor | VS Code theme JSON (packaged as an extension) |
 
 Notes specific to Vesper Dimmed (the most worked-on theme):
@@ -70,7 +69,7 @@ Notes specific to Vesper Dimmed (the most worked-on theme):
 - The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal formats have no equivalents.
 - **Hue discipline:** neutrals are warm (hue ~40°). Derive new greys from that ramp; pure greys (`#1A1A1A`, `#101010`) are no longer in use.
 
-herdr itself uses a stock theme (`catppuccin` in `config.toml`), not one of the custom three.
+The multiplexer (Zellij) uses the built-in `kanagawa` theme, not one of the custom three — it is **not** a theme-mirror target, so a colour change never touches `dot_config/zellij/`.
 
 ## Sync workflow for theme/config edits
 
