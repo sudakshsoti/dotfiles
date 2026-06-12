@@ -1,0 +1,5 @@
+// Zellij config — stock defaults, theme set to the built-in Kanagawa.
+// Everything not set here uses Zellij's compiled-in defaults
+// (run `zellij setup --dump-config` to see the full default set).
+
+theme "kanagawa"
