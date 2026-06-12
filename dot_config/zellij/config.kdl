@@ -55,5 +55,15 @@ keybinds {
             }
             SwitchToMode "Locked"
         }
+        // Override the native new-tab (tmux prefix + `c`) with zellij-newtab-plus:
+        // create a tab with a typed name + zoxide directory nav + name history.
+        // SwitchToMode "Locked" so the floating plugin receives raw keystrokes.
+        bind "c" {
+            LaunchOrFocusPlugin "https://github.com/AlexZasorin/zellij-newtab-plus/releases/latest/download/zellij-newtab-plus.wasm" {
+                floating true
+                use_zoxide true
+            }
+            SwitchToMode "Locked"
+        }
     }
 }
