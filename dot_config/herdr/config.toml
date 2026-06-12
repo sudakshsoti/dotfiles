@@ -1,0 +1,41 @@
+onboarding = false
+
+[keys]
+prefix = "ctrl+space"
+
+# Desktop notifications for background agent events.
+[ui.toast]
+# system = ask macOS notification service directly (native banners)
+delivery = "herdr"
+
+# Play a sound when an agent in a background workspace changes state.
+[ui.sound]
+enabled = true
+
+[ui]
+agent_panel_scope = "all"
+show_agent_labels_on_pane_borders = true
+
+[theme]
+name = "nord"
+
+# Full Kohra palette ("cool fog-grey monochrome"; source of truth: ~/dev/kohra).
+# Overrides sit on top of the nord base. `accent` drives the thick selected-pane
+# stroke and is intentionally dim (muted steel-blue) so the stroke reads quiet.
+[theme.custom]
+panel_bg    = "#181b1d"   # bg-surface     - panel chrome
+surface0    = "#212527"   # bg-elevated    - first elevation
+surface1    = "#3f4245"   # fg-ghost       - lighter surface
+surface_dim = "#0f1214"   # bg-editor      - recessed surface
+overlay0    = "#666a6c"   # fg-dim         - overlay grey
+overlay1    = "#797e80"   # fg-subtle      - lighter overlay grey
+text        = "#d7dbde"   # fg-normal      - primary text
+subtext0    = "#b7bbbe"   # fg-secondary   - secondary text
+mauve       = "#b9ace6"   # accent/purple
+green       = "#acbf83"   # accent/green
+yellow      = "#d6ae7a"   # accent/yellow
+red         = "#e6a1a1"   # accent/red
+blue        = "#83bee5"   # accent/blue
+teal        = "#7ac8b3"   # accent/teal-bright
+peach       = "#e2a687"   # accent/orange
+accent      = "#4f7791"   # blue-muted     - dim selected-pane stroke

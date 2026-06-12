@@ -39,10 +39,11 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 ## Terminal stack
 
-The current stack is **Ghostty** (outer terminal) → **Starship** (prompt), with **no multiplexer**. This has churned repeatedly — earlier iterations used WezTerm as the terminal and, as multiplexers, herdr (https://herdr.dev) and then Zellij. **Both herdr and Zellij are fully removed** (Zellij uninstalled 2026-06-13: brew formula, `~/.config/zellij/`, the `zcd` alias, and the zellaude hooks in `~/.claude/settings.json`) — treat any `dot_config/herdr/` or `dot_config/zellij/` reference as dead. **WezTerm is not removed:** it stays brew-installed and its config is chezmoi-managed (see below) as a kept-around alternate, even though Ghostty is the daily driver. **Verify the live stack before acting on it** — `which ghostty wezterm`, `chezmoi managed | grep -E 'ghostty|wezterm'`.
+The default stack is **Ghostty** (outer terminal) → **Starship** (prompt), with no automatically launched multiplexer. **Herdr is installed and supported as an optional multiplexer** in Ghostty or WezTerm; its chezmoi-managed config uses `ctrl+space` as the prefix. Zellij was fully removed on 2026-06-13 (brew formula, `~/.config/zellij/`, the `zcd` alias, and the zellaude hooks in `~/.claude/settings.json`) — treat any `dot_config/zellij/` reference as dead. **WezTerm is not removed:** it stays brew-installed and its config is chezmoi-managed (see below) as a kept-around alternate, even though Ghostty is the daily driver. **Verify the live stack before acting on it** — `which ghostty wezterm herdr`, `chezmoi managed | grep -E 'ghostty|wezterm|herdr'`.
 
 - Ghostty config: `dot_config/ghostty/config`; palettes under `dot_config/ghostty/themes/` (one per custom theme — see Theme architecture).
 - Starship prompt: `dot_config/starship.toml`.
+- Herdr config: `dot_config/herdr/config.toml` — optional multiplexer, stable update channel, `ctrl+space` prefix, Kohra palette.
 - WezTerm config (alternate terminal, not the daily driver): `dot_config/wezterm/wezterm.lua` — self-contained, Kohra theme inline, MonoLisa NF, leader `CTRL+a`, resurrect plugin for session save/restore. herdr-specific keybindings were stripped when it was restored (CMD+k does a native `ClearScrollback`). Mirrors the Ghostty look; if the Kohra palette changes, the hexes embedded here must be updated by hand.
 
 ## Theme architecture
