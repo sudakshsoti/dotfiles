@@ -39,13 +39,9 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 ## Terminal stack
 
-The current stack is **Ghostty** (outer terminal) → **Zellij** (multiplexer) → **Starship** (prompt). This has churned repeatedly — earlier iterations used WezTerm as the terminal and herdr (https://herdr.dev) as the multiplexer. **herdr is fully removed** — treat any `dot_config/herdr/` reference as dead. **WezTerm is not removed:** it stays brew-installed and its config is chezmoi-managed (see below) as a kept-around alternate, even though Ghostty is the daily driver. **Verify the live stack before acting on it** — `which ghostty zellij wezterm`, `chezmoi managed | grep -E 'ghostty|zellij|wezterm'`.
+The current stack is **Ghostty** (outer terminal) → **Starship** (prompt), with **no multiplexer**. This has churned repeatedly — earlier iterations used WezTerm as the terminal and, as multiplexers, herdr (https://herdr.dev) and then Zellij. **Both herdr and Zellij are fully removed** (Zellij uninstalled 2026-06-13: brew formula, `~/.config/zellij/`, the `zcd` alias, and the zellaude hooks in `~/.claude/settings.json`) — treat any `dot_config/herdr/` or `dot_config/zellij/` reference as dead. **WezTerm is not removed:** it stays brew-installed and its config is chezmoi-managed (see below) as a kept-around alternate, even though Ghostty is the daily driver. **Verify the live stack before acting on it** — `which ghostty wezterm`, `chezmoi managed | grep -E 'ghostty|wezterm'`.
 
 - Ghostty config: `dot_config/ghostty/config`; palettes under `dot_config/ghostty/themes/` (one per custom theme — see Theme architecture).
-- Zellij config: `dot_config/zellij/config.kdl` — stock compiled-in defaults with `theme "kohra"` plus two plugins. Three **custom** themes live in `dot_config/zellij/themes/`: `kohra` (active), `vesper-dim`, and `nord-dim`. The two `-dim` files each fork a built-in (vesper / nord) with one change — `ribbon_unselected.background` darkened so the status-bar keybind chips read dark, not bright (every built-in ships a *light* unselected-ribbon bg, so a dark bottom bar requires a fork). `kohra` is different: Zellij ships no Kohra base, so it is hand-authored from the Kohra cross-app palette (see `dot_config/ghostty/themes/kohra-ghostty`) — fog-grey monochrome with the signature blue `#78accf` on selected ribbon/active frame. Its base bg `#181b1d` is already the darkest tone, so `ribbon_unselected.background` uses it directly (no separate dim fork needed). `zellij setup --dump-config` prints the full default set; `zellij setup --check` validates config.kdl (but **not** layouts).
-  - **Plugins are loaded from release URLs** (no `.wasm` binaries in the repo), so first launch prompts once per plugin to grant permissions (`y`). They are: `zellij-sessionizer` (fuzzy project→session switcher over `~/dev`, bound to the tmux prefix then `g`), and `zellij-newtab-plus` (enhanced new-tab with typed name + zoxide nav + name history, bound to the tmux prefix then `c` — overriding native new-tab; needs `zoxide`).
-  - `dot_config/zellij/layouts/default.kdl` swaps the native tab bar for **zellaude** (`ishefi/zellaude`), a Claude-Code-aware bar: per-session activity, macOS notifications + pulse on permission prompts, click ⚠ to focus that pane. **Caveat:** on first load zellaude writes `~/.config/zellij/plugins/zellaude-hook.sh` and registers it in `~/.claude/settings.json` — that live edit diverges from `dot_claude/settings.json` and must be captured back into the chezmoi source. Needs `terminal-notifier` (brew) for click-to-focus.
-  - Config/keybind changes only take effect in **new** sessions — Zellij does not hot-reload config into running sessions.
 - Starship prompt: `dot_config/starship.toml`.
 - WezTerm config (alternate terminal, not the daily driver): `dot_config/wezterm/wezterm.lua` — self-contained, Kohra theme inline, MonoLisa NF, leader `CTRL+a`, resurrect plugin for session save/restore. herdr-specific keybindings were stripped when it was restored (CMD+k does a native `ClearScrollback`). Mirrors the Ghostty look; if the Kohra palette changes, the hexes embedded here must be updated by hand.
 
@@ -56,7 +52,7 @@ Three custom themes each ship across **multiple** apps. Any colour change must b
 | Theme | Apps it spans |
 |---|---|
 | **Vesper Dimmed** | Zed, Sublime Text, Ghostty |
-| **Kohra** | Zed, Ghostty, Cursor (extension), Zellij |
+| **Kohra** | Zed, Ghostty, Cursor (extension) |
 | **Editorial Code** | Zed, Sublime Text, Ghostty, Cursor (extension) |
 
 Per-format locations:
@@ -72,8 +68,6 @@ Notes specific to Vesper Dimmed (the most worked-on theme):
 - Sublime's `variables` block (`fg`, `muted`, `subtle`, `punct`, `orange`, `aqua`, …) is the propagation point — changing `fg` updates the global foreground and every `variable`-scoped syntax rule.
 - The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal formats have no equivalents.
 - **Hue discipline:** neutrals are warm (hue ~40°). Derive new greys from that ramp; pure greys (`#1A1A1A`, `#101010`) are no longer in use.
-
-The multiplexer (Zellij) now uses `kohra` (in `dot_config/zellij/themes/`). It derives from the Kohra cross-app palette but is a **separate, hand-authored** file — Zellij's theme format has no overlap with the Zed/Sublime/Ghostty/Cursor formats, so it is **not** an automatic theme-mirror target. A palette change to cross-app Kohra does not propagate here; mirror it into `dot_config/zellij/themes/kohra.kdl` by hand if you want them in sync. The `vesper-dim` and `nord-dim` forks remain available as inactive alts.
 
 ## Sync workflow for theme/config edits
 
