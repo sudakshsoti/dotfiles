@@ -18,8 +18,13 @@ layout {
             // Wide pane, focused on open — a plain shell. Launch `claude` here
             // yourself when ready (it creates its own worktree).
             pane size="70%" focus=true name="agent"
-            // Plain shell for git / running tests / tailing logs alongside it.
-            pane size="30%" name="shell"
+            // Lazygit rail — auto-refreshes on filesystem changes, so the agent's
+            // edits stream in as a live diff to stage/discard/commit. Quitting
+            // lazygit (q) drops into a normal interactive shell rather than a
+            // re-run prompt.
+            pane size="30%" name="git" command="zsh" {
+                args "-c" "lazygit; exec zsh"
+            }
         }
     }
 }

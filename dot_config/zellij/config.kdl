@@ -1,22 +1,9 @@
 // Zellij config — managed by chezmoi (dot_config/zellij/config.kdl).
 // Replaces herdr as the terminal-native multiplexer running inside WezTerm.
-// Theme lives in themes/kohra.kdl so it stays a separate, mirror-able file
-// like the Zed/Ghostty theme targets.
-
-theme "kohra"
-
-// Full chrome (tab bar + status bar) but de-powerlined: simplified_ui drops the
-// arrow/triangle glyphs so the bars read as clean blocks in the Kohra monochrome.
-simplified_ui true
-
-// Real pane borders, softened to match the rounded look of the rest of the stack.
-pane_frames true
-ui {
-    pane_frames {
-        rounded_corners true
-        hide_session_name false
-    }
-}
+//
+// Appearance is intentionally left at Zellij's defaults — no theme, no
+// simplified_ui, no pane_frame overrides. The custom "kohra" theme still lives
+// in themes/kohra.kdl if you want to opt back in with `theme "kohra"`.
 
 // macOS clipboard — copy-on-select yanks straight into the system pasteboard.
 copy_command "pbcopy"
