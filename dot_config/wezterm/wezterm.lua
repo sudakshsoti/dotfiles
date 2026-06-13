@@ -113,13 +113,19 @@ config.adjust_window_size_when_changing_font_size = false
 config.window_close_confirmation = 'NeverPrompt'
 config.front_end = 'WebGpu' -- best rendering on Apple Silicon
 config.max_fps = 120
-config.animation_fps = 60
+config.animation_fps = 1 -- disable cursor-blink/visual-bell easing frames (kills TUI cursor flicker)
 config.scrollback_lines = 20000
 config.audible_bell = 'Disabled'
 
 -- Cursor — bar, like Ghostty's cursor-style = bar
 config.default_cursor_style = 'SteadyBar'
 config.cursor_thickness = '0.12cell'
+-- Stop cursor flicker inside TUIs (herdr): when a program requests a blinking
+-- cursor, WezTerm fades it in/out via easing, which reads as flicker when panes
+-- repaint. Make blink a hard on/off (Constant easing). animation_fps is set
+-- to 1 below to disable the easing frames entirely.
+config.cursor_blink_ease_in = 'Constant'
+config.cursor_blink_ease_out = 'Constant'
 
 -- ─────────────────────────────────────────────────────────────────────────────
 -- Tab bar — minimal, blends in, hides when there's only one tab
