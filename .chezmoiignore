@@ -5,7 +5,3 @@ install.sh
 FONTS.md
 CLAUDE.md
 LICENSE
-
-# Public fonts: installed manually into ~/Library/Fonts (see FONTS.md),
-# not deployed as a managed target.
-fonts

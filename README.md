@@ -2,7 +2,7 @@
 
 My personal macOS configuration — editor, terminal, shell, themes — managed with
 [chezmoi](https://chezmoi.io). This repo is **public**, so it contains **no secrets
-and no paid fonts**. Those live elsewhere (explained below) and get pulled in
+and no fonts**. Those live elsewhere (explained below) and get pulled in
 automatically during setup.
 
 ---
@@ -19,7 +19,7 @@ It will:
 1. Install Homebrew, chezmoi, age, and the Bitwarden CLI
 2. Ask you to **log in to Bitwarden** (so it can fetch your secret decryption key)
 3. Download these dotfiles and apply them — decrypting your API keys automatically
-4. Clone the private fonts repo and install MonoLisa + Berkeley Mono
+4. Clone the private fonts repo and install all fonts (Atkinson + MonoLisa + Berkeley Mono)
 
 That's it. Restart your terminal and editors afterward.
 
@@ -34,8 +34,8 @@ There are **three** places your config lives. Only the first is public.
 
 | Place | What's in it | Visibility |
 |---|---|---|
-| **This repo** (`dotfiles`) | All configs, themes, the free Atkinson font, and *encrypted* secrets | 🌍 Public |
-| **`dotfiles-private` repo** | Paid fonts: MonoLisa + Berkeley Mono | 🔒 Private |
+| **This repo** (`dotfiles`) | All configs, themes, and *encrypted* secrets | 🌍 Public |
+| **`dotfiles-private` repo** | All fonts: Atkinson + MonoLisa + Berkeley Mono | 🔒 Private |
 | **Bitwarden** | One secret note, `chezmoi age key` — the key that decrypts everything | 🔑 Your vault |
 
 Think of it like a locked box: the **locked box** (encrypted secrets) is safe to leave
@@ -103,7 +103,7 @@ Typical loop: `chezmoi edit <file>` → `chezmoi apply` → `chezmoi cd` → `gi
 
 | Font | License | Where |
 |---|---|---|
-| Atkinson Hyperlegible | OFL (free) | this repo, `fonts/` |
+| Atkinson Hyperlegible | OFL (free) | `dotfiles-private` repo |
 | MonoLisa Nerd Font | Paid | `dotfiles-private` repo |
 | Berkeley Mono (NFM + v2) | Paid | `dotfiles-private` repo |
 
@@ -128,10 +128,9 @@ chmod 600 ~/.config/chezmoi/key.txt
 #    then decrypts secrets)
 chezmoi init --apply sudakshsoti
 
-# 4. Fonts
+# 4. Fonts (all live in the private repo)
 git clone git@github.com:sudakshsoti/dotfiles-private.git ~/dev/dotfiles-private
-cp ~/dev/dotfiles-private/fonts/**/*.ttf ~/Library/Fonts/
-cp ~/dev/dotfiles/fonts/Atkinson-Hyperlegible/*.ttf ~/Library/Fonts/
+find ~/dev/dotfiles-private/fonts -name '*.ttf' -exec cp {} ~/Library/Fonts/ \;
 fc-cache -f 2>/dev/null || true
 ```
 

@@ -71,7 +71,7 @@ chezmoi init --apply "$GH_USER"
 ok "Dotfiles applied"
 
 # --- 5. Fonts (private repo) ----------------------------------------------
-bold "Installing licensed fonts (MonoLisa + Berkeley Mono) from the private repo"
+bold "Installing fonts (Atkinson Hyperlegible + MonoLisa + Berkeley Mono) from the private repo"
 if [ ! -d "$PRIVATE_DIR/.git" ]; then
   mkdir -p "$(dirname "$PRIVATE_DIR")"
   if ! git clone "$PRIVATE_REPO" "$PRIVATE_DIR" 2>/dev/null; then
