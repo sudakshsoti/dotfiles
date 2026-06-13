@@ -111,19 +111,18 @@ config.window_background_opacity = 1.0
 -- config.macos_window_background_blur = 30
 config.adjust_window_size_when_changing_font_size = false
 config.window_close_confirmation = 'NeverPrompt'
-config.front_end = 'WebGpu' -- best rendering on Apple Silicon
+config.front_end = 'OpenGL' -- was 'WebGpu'; WebGpu mishandles CSI 2026 sync frames (herdr/Ratatui) → flicker. OpenGL is WezTerm's default and stays GPU-accelerated.
 config.max_fps = 120
-config.animation_fps = 1 -- disable cursor-blink/visual-bell easing frames (kills TUI cursor flicker)
+config.animation_fps = 1 -- reduce idle animation frames (cosmetic; not the flicker fix — see front_end above)
 config.scrollback_lines = 20000
 config.audible_bell = 'Disabled'
 
 -- Cursor — bar, like Ghostty's cursor-style = bar
 config.default_cursor_style = 'SteadyBar'
 config.cursor_thickness = '0.12cell'
--- Stop cursor flicker inside TUIs (herdr): when a program requests a blinking
--- cursor, WezTerm fades it in/out via easing, which reads as flicker when panes
--- repaint. Make blink a hard on/off (Constant easing). animation_fps is set
--- to 1 below to disable the easing frames entirely.
+-- When a program requests a blinking cursor, make it a hard on/off instead of
+-- WezTerm's default fade (Constant easing). Cosmetic — does not affect the
+-- herdr redraw flicker, which is the front_end concern above.
 config.cursor_blink_ease_in = 'Constant'
 config.cursor_blink_ease_out = 'Constant'
 
