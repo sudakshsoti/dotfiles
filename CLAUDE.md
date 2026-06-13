@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repo purpose
 
-Personal macOS dotfiles managed by **chezmoi**. The repo is the source of truth; chezmoi materialises files into the live locations. This repo is **public**, so it contains no plaintext secrets and no paid fonts.
+Personal macOS dotfiles managed by **chezmoi**. The repo is the source of truth; chezmoi materialises files into the live locations. This repo is **public**, so it contains no plaintext secrets and no font binaries.
 
 `README.md` is the human-facing setup guide (new-machine bootstrap, the secrets model in plain English). `FONTS.md` covers the font license split. This file is the contributor/architecture reference — read it when *editing* configs or themes.
 
@@ -14,7 +14,7 @@ Path mapping conventions (chezmoi):
 - `executable_*` → target gets the executable bit
 - `*.tmpl` files → templated; chezmoi expands `{{ .var }}` placeholders at apply time
 
-`.chezmoiignore` keeps repo-only files (`README.md`, `install.sh`, `FONTS.md`, `CLAUDE.md`, `fonts/`) out of the home directory.
+`.chezmoiignore` keeps repo-only files (`README.md`, `install.sh`, `FONTS.md`, `CLAUDE.md`) out of the home directory.
 
 ## Common commands
 
@@ -35,7 +35,7 @@ When `chezmoi diff` shows divergence on a file you didn't touch, **investigate b
 
 `install.sh` is the one-command entry point (run via `curl | bash` — see README). In order it: installs Homebrew → installs `chezmoi age bitwarden-cli` → restores the age key from Bitwarden → `chezmoi init --apply` → clones the private fonts repo and installs fonts. It is idempotent (safe to re-run).
 
-Config lives in **three places**: this public repo (configs, themes, encrypted secrets, the free Atkinson font), the private `dotfiles-private` repo (paid fonts: MonoLisa, Berkeley Mono), and Bitwarden (the one secret that decrypts everything — the `chezmoi age key` note).
+Config lives in **three places**: this public repo (configs, themes, encrypted secrets), the private `dotfiles-private` repo (all fonts: Atkinson, MonoLisa, Berkeley Mono), and Bitwarden (the one secret that decrypts everything — the `chezmoi age key` note).
 
 ## Terminal stack
 
@@ -48,13 +48,12 @@ The default stack is **Ghostty** (outer terminal) → **Starship** (prompt), wit
 
 ## Theme architecture
 
-Three custom themes each ship across **multiple** apps. Any colour change must be mirrored in every file where the conceptual token exists.
+Two custom themes each ship across **multiple** apps. Any colour change must be mirrored in every file where the conceptual token exists.
 
 | Theme | Apps it spans |
 |---|---|
 | **Vesper Dimmed** | Zed, Sublime Text, Ghostty |
 | **Kohra** | Zed, Ghostty, Cursor (extension) |
-| **Editorial Code** | Zed, Sublime Text, Ghostty, Cursor (extension) |
 
 Per-format locations:
 
