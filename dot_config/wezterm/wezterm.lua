@@ -244,8 +244,18 @@ config.keys = {
   { key = '0', mods = 'CMD', action = act.ResetFontSize },
   { key = '=', mods = 'CMD', action = act.IncreaseFontSize },
   { key = '-', mods = 'CMD', action = act.DecreaseFontSize },
-  -- CMD+k clears the focused pane (scrollback + viewport), mac-native.
-  { key = 'k', mods = 'CMD',       action = act.ClearScrollback 'ScrollbackAndViewport' },
+  -- CMD+k clears the focused pane, mac-native — but context-aware. When a
+  -- full-screen TUI owns the screen (herdr, nvim, …) ClearScrollback would wipe
+  -- the app's rendered UI without telling it to repaint, so the herdr interface
+  -- disappears. In that case send CTRL-L through instead and let the app clear &
+  -- redraw itself; only do the native scrollback clear at a bare shell prompt.
+  { key = 'k', mods = 'CMD', action = wezterm.action_callback(function(window, pane)
+      if pane:is_alt_screen_active() then
+        window:perform_action(act.SendKey { key = 'l', mods = 'CTRL' }, pane)
+      else
+        window:perform_action(act.ClearScrollback 'ScrollbackAndViewport', pane)
+      end
+  end) },
   { key = 'Enter', mods = 'CMD', action = act.ToggleFullScreen },
 }
 
