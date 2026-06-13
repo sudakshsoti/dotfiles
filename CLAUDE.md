@@ -48,26 +48,19 @@ The default stack is **Ghostty** (outer terminal) → **Starship** (prompt), wit
 
 ## Theme architecture
 
-Two custom themes each ship across **multiple** apps. Any colour change must be mirrored in every file where the conceptual token exists.
-
-| Theme | Apps it spans |
-|---|---|
-| **Vesper Dimmed** | Zed, Sublime Text, Ghostty |
-| **Kohra** | Zed, Ghostty, Cursor (extension) |
+One custom theme, **Kohra**, ships across **multiple** apps (Zed, Ghostty, Cursor extension). Any colour change must be mirrored in every file where the conceptual token exists. (The WezTerm config also embeds the Kohra hexes inline — see Terminal stack.)
 
 Per-format locations:
 
 | File / pattern | Tool | Format |
 |---|---|---|
 | `dot_config/zed/themes/*.json` | Zed | Zed v0.2.0 theme schema (full UI + syntax) |
-| `private_Library/.../Sublime Text/.../*.sublime-color-scheme` | Sublime | JSON; named `variables` referenced by scope rules |
 | `dot_config/ghostty/themes/*` | Ghostty | `key = value`; terminal palette + selection |
 | `dot_cursor/extensions/*/themes/*.json` | Cursor | VS Code theme JSON (packaged as an extension) |
 
-Notes specific to Vesper Dimmed (the most worked-on theme):
-- Sublime's `variables` block (`fg`, `muted`, `subtle`, `punct`, `orange`, `aqua`, …) is the propagation point — changing `fg` updates the global foreground and every `variable`-scoped syntax rule.
-- The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal formats have no equivalents.
-- **Hue discipline:** neutrals are warm (hue ~40°). Derive new greys from that ramp; pure greys (`#1A1A1A`, `#101010`) are no longer in use.
+Notes specific to Kohra:
+- Palette source of truth is `~/dev/kohra` (`themes/kohra-ghostty`); the Ghostty/Zed/Cursor files and the inline WezTerm hexes all derive from it.
+- The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal format has no equivalents.
 
 ## Sync workflow for theme/config edits
 
