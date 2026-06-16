@@ -295,4 +295,23 @@ table.insert(config.hyperlink_rules, {
   format = 'http://$1',
 })
 
+-- Mouse selection copies straight to the system Clipboard. WezTerm's default
+-- completes a drag-selection into the PrimarySelection buffer, which on macOS
+-- isn't the real clipboard — so the first copy lands nowhere and you have to
+-- select/copy twice. Overriding the left-mouse-up fixes that. CTRL+click still
+-- opens links (default modifier binding is untouched).
+config.mouse_bindings = {
+  {
+    event = { Up = { streak = 1, button = 'Left' } },
+    mods = 'NONE',
+    action = act.CompleteSelectionOrOpenLinkAtMouseCursor 'Clipboard',
+  },
+  -- Triple-click selects a whole line and copies it to the Clipboard.
+  {
+    event = { Up = { streak = 3, button = 'Left' } },
+    mods = 'NONE',
+    action = act.CompleteSelection 'Clipboard',
+  },
+}
+
 return config
