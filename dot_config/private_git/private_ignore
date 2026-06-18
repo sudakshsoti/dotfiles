@@ -1,0 +1,15 @@
+# Global git ignore (~/.config/git/ignore)
+# Machine-wide, personal/OS artifacts only — never committed, never shared.
+# Project/language ignores belong in each repo's committed .gitignore.
+
+# ── macOS ──
+.DS_Store
+.AppleDouble
+.LSOverride
+._*                 # AppleDouble resource forks
+.Spotlight-V100
+.Trashes
+
+# ── Claude Code (personal, per-machine) ──
+**/.claude/settings.local.json
+.claude/local/
