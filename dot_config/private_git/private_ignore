@@ -13,3 +13,8 @@
 # ── Claude Code (personal, per-machine) ──
 **/.claude/settings.local.json
 .claude/local/
+
+# ── IDE workspace dirs ──
+.cursor/
+.zed/
+.ropeproject/
