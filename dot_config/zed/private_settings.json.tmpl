@@ -7,6 +7,15 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "buffer_line_height": "comfortable",
+  "helix_mode": false,
+  "outline_panel": {
+    "dock": "left"
+  },
+  "collaboration_panel": {
+    "button": false,
+    "dock": "left"
+  },
   "icon_theme": "Catppuccin Frappé",
   "theme": {
     "mode": "dark",
@@ -15,17 +24,18 @@
   },
   "ui_font_family": "Retina",
   "ui_font_size": 15.0,
-  "agent_ui_font_size": 16.0,
+  "agent_ui_font_size": 15.0,
   "agent_buffer_font_size": 13.0,
   "buffer_font_family": "MonoLisaNF",
   "buffer_font_weight": 400.0,
-  "buffer_font_size": 14.0,
+  "buffer_font_size": 13.0,
   "show_edit_predictions": false,
   "edit_predictions": {
     "provider": "zed",
   },
   "git_panel": {
-    "dock": "left",
+    "button": true,
+    "dock": "right",
   },
   "project_panel": {
     "dock": "left",
@@ -42,9 +52,7 @@
   "terminal": {
     "copy_on_select": true,
     "cursor_shape": "bar",
-    "font_family": "MonoLisaNF",
-    "font_size": 13.0,
-    "font_weight": 400.0,
+    // font_family / font_size / font_weight inherit buffer_font_* (MonoLisaNF, 13, 400)
     "dock": "right",
     "option_as_meta": true,
   },
@@ -77,6 +85,7 @@
         "mode": ["plan", "bypassPermissions"],
       },
       "default_config_options": {
+        "mode": "default",
         "model": "opusplan",
       },
       "type": "registry",
