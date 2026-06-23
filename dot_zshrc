@@ -218,3 +218,7 @@ alias gdft='GIT_EXTERNAL_DIFF=difft git diff'   # git diff rendered by difftasti
 # ============================================================
 alias gwipe='git reset --hard HEAD'                       # DESTRUCTIVE: discard all uncommitted tracked changes
 alias gpark='git stash push -u -m "gpark $(date +%F\ %T)"' # safe: stash all changes (incl. untracked); restore w/ git stash pop
+
+# Cross-lineage plan review
+alias rev='pbpaste | llm -t peer-review'
+alias rev-hard='pbpaste | llm -t peer-review -m openrouter/google/gemini-3-flash-preview'
