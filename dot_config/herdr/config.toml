@@ -2,6 +2,15 @@ onboarding = false
 
 [keys]
 prefix = "ctrl+space"
+# Workspace cycling, tmux session convention (workspaces ≈ tmux sessions).
+# prefix-gated so Ghostty never intercepts the second key.
+previous_workspace = "prefix+("
+next_workspace = "prefix+)"
+
+# Direct workspace jump: ctrl+1..9 (no prefix). Kitty keyboard protocol in
+# Ghostty disambiguates ctrl+<digit>, so this is reliable in this stack.
+[keys.indexed]
+workspaces = "ctrl"
 
 # Desktop notifications for background agent events.
 [ui.toast]

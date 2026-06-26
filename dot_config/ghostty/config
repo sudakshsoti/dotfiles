@@ -1,12 +1,23 @@
+# Font
 font-family = MonoLisaNF
-adjust-cell-height = 12%
 font-size = 13
 font-style = Medium
-theme = kohra-ghostty
-background-opacity = 0.95
-window-padding-x = 12
-window-padding-y = 12
 font-thicken = false
-cursor-style = bar
+adjust-cell-height = 12%
+
+# Theme
+theme = kohra-ghostty
+
+# Window / appearance
 background-opacity = 1
 background-blur = false
+window-padding-x = 12
+window-padding-y = 12
+cursor-style = bar
+
+# Keybinds
+# Cmd+K clears the focused pane. Ghostty's default super+k=clear_screen only
+# fires at a shell prompt (shell integration), so it's a silent no-op inside
+# herdr, which holds the alternate screen full-time. Send Ctrl+L (form-feed)
+# instead so the pane's shell/agent clears, in herdr and at a plain prompt.
+keybind = super+k=text:\x0c
