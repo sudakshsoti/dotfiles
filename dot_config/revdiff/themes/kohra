@@ -1,0 +1,33 @@
+# name: kohra
+# description: cool fog-grey monochrome; mirrors ~/dev/kohra / ghostty kohra-ghostty
+# author: sudaksh
+
+# Syntax highlighting: chroma has no "use terminal ANSI" mode, so pick the
+# coolest muted built-in. Swap to gruvbox / catppuccin-macchiato for warmer code.
+chroma-style = nord
+
+color-accent          = #78accf
+color-border          = #4a4d50
+color-normal          = #babec1
+color-muted           = #828689
+color-selected-fg     = #181b1d
+color-selected-bg     = #78accf
+color-annotation      = #d2a56d
+color-cursor-fg       = #d2a56d
+
+# add/remove backgrounds match the delta [delta] block in ~/.gitconfig
+color-add-fg          = #a4b776
+color-add-bg          = #25311c
+color-remove-fg       = #e19796
+color-remove-bg       = #3a2628
+color-word-add-bg     = #3a4a26
+color-word-remove-bg  = #5c2f31
+color-modify-fg       = #d2a56d
+color-modify-bg       = #332b18
+
+color-tree-bg         = #181b1d
+color-diff-bg         = #181b1d
+color-status-fg       = #181b1d
+color-status-bg       = #3e88b5
+color-search-fg       = #181b1d
+color-search-bg       = #d2a56d

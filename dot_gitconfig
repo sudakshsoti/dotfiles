@@ -17,6 +17,30 @@
 	line-numbers = true
 	hyperlinks = true
 	# side-by-side = true # uncomment for two-column view
+
+	# --- Kohra theme (palette mirrors ~/dev/kohra / ghostty kohra-ghostty) ---
+	syntax-theme = ansi   # bind in-line syntax colours to the terminal's Kohra ANSI palette
+	minus-style                   = syntax "#3a2628"
+	minus-emph-style              = syntax "#5c2f31"
+	plus-style                    = syntax "#25311c"
+	plus-emph-style               = syntax "#3a4a26"
+	zero-style                    = syntax
+	line-numbers-minus-style      = "#b46768"
+	line-numbers-plus-style       = "#768a42"
+	line-numbers-zero-style       = "#4a4d50"
+	file-style                    = "#76b6e1" bold
+	file-decoration-style         = "#2b2e31" ul
+	hunk-header-style             = syntax italic
+	hunk-header-decoration-style  = "#2b2e31" box
+	hunk-header-file-style        = "#828689"
+	hunk-header-line-number-style = "#a57635"
+	whitespace-error-style        = "#e19796" reverse
+
+	# --- narrow-pane friendly: one (new-line) number column instead of two ---
+	line-numbers-left-format  = ""
+	line-numbers-right-format = "{np:>3}│ "
+	line-numbers-left-style   = "#4a4d50"
+	line-numbers-right-style  = "#4a4d50"
 [merge]
 	conflictstyle = zdiff3
 [diff]

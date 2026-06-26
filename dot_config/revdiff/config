@@ -1,0 +1,14 @@
+[Application Options]
+theme = kohra
+
+# show new files Claude writes, not just tracked diffs
+untracked = true
+
+# narrow right-pane friendly: wrap long lines and hang the continuation under
+# the first row's content so wrapped markdown lists don't read as new bullets
+wrap = true
+wrap-indent = 2
+
+line-numbers = true
+word-diff = true
+tree-width = 2
