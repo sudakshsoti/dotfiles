@@ -39,16 +39,16 @@ Config lives in **three places**: this public repo (configs, themes, encrypted s
 
 ## Terminal stack
 
-The default stack is **Ghostty** (outer terminal) → **Starship** (prompt), with no automatically launched multiplexer. **Herdr is installed and supported as an optional multiplexer** in Ghostty or WezTerm; its chezmoi-managed config uses `ctrl+space` as the prefix. Zellij was fully removed on 2026-06-13 (brew formula, `~/.config/zellij/`, the `zcd` alias, and the zellaude hooks in `~/.claude/settings.json`) — treat any `dot_config/zellij/` reference as dead. **WezTerm is not removed:** it stays brew-installed and its config is chezmoi-managed (see below) as a kept-around alternate, even though Ghostty is the daily driver. **Verify the live stack before acting on it** — `which ghostty wezterm herdr`, `chezmoi managed | grep -E 'ghostty|wezterm|herdr'`.
+The default stack is **Ghostty** (outer terminal) → **Starship** (prompt), with no automatically launched multiplexer. **Herdr is installed and supported as an optional multiplexer** in Ghostty; its chezmoi-managed config uses `ctrl+space` as the prefix. Zellij was fully removed on 2026-06-13 (brew formula, `~/.config/zellij/`, the `zcd` alias, and the zellaude hooks in `~/.claude/settings.json`) — treat any `dot_config/zellij/` reference as dead. **WezTerm was removed on 2026-06-26** (app uninstalled). Its config was *not* deleted — it lives at `archive/wezterm/wezterm.lua`, which the `archive` entry in `.chezmoiignore` keeps out of the home dir. Treat any `dot_config/wezterm/` reference as dead. **Verify the live stack before acting on it** — `which ghostty wezterm herdr`, `chezmoi managed | grep -E 'ghostty|wezterm|herdr'`.
 
 - Ghostty config: `dot_config/ghostty/config`; palettes under `dot_config/ghostty/themes/` (one per custom theme — see Theme architecture).
 - Starship prompt: `dot_config/starship.toml`.
 - Herdr config: `dot_config/herdr/config.toml` — optional multiplexer, stable update channel, `ctrl+space` prefix, Kohra palette.
-- WezTerm config (alternate terminal, not the daily driver): `dot_config/wezterm/wezterm.lua` — self-contained, Kohra theme inline, MonoLisa NF, leader `CTRL+a`, resurrect plugin for session save/restore. herdr-specific keybindings were stripped when it was restored (CMD+k does a native `ClearScrollback`). Mirrors the Ghostty look; if the Kohra palette changes, the hexes embedded here must be updated by hand.
+- WezTerm config (**retired 2026-06-26, app uninstalled**): kept for reference at `archive/wezterm/wezterm.lua` (chezmoi-ignored, not deployed). Self-contained — Kohra theme inline, MonoLisa NF, leader `CTRL+a`, resurrect plugin for session save/restore. Mirrors the Ghostty look. To revive: see `archive/README.md`. While archived it's frozen, so Kohra palette changes no longer need to be mirrored here.
 
 ## Theme architecture
 
-One custom theme, **Kohra**, ships across **multiple** apps (Zed, Ghostty, Cursor extension). Any colour change must be mirrored in every file where the conceptual token exists. (The WezTerm config also embeds the Kohra hexes inline — see Terminal stack.)
+One custom theme, **Kohra**, ships across **multiple** apps (Zed, Ghostty, Cursor extension). Any colour change must be mirrored in every file where the conceptual token exists. (The retired WezTerm config in `archive/` also embeds the Kohra hexes inline, but it's frozen — no longer kept in sync; see Terminal stack.)
 
 Per-format locations:
 
@@ -59,7 +59,7 @@ Per-format locations:
 | `dot_cursor/extensions/*/themes/*.json` | Cursor | VS Code theme JSON (packaged as an extension) |
 
 Notes specific to Kohra:
-- Palette source of truth is `~/dev/kohra` (`themes/kohra-ghostty`); the Ghostty/Zed/Cursor files and the inline WezTerm hexes all derive from it.
+- Palette source of truth is `~/dev/kohra` (`themes/kohra-ghostty`); the Ghostty/Zed/Cursor files all derive from it. (The archived WezTerm config embeds the hexes too but is no longer kept in sync.)
 - The Zed file is the only one carrying non-terminal UI tokens (element backgrounds, search match, document highlights, hint background, etc.); the terminal format has no equivalents.
 
 ## Sync workflow for theme/config edits
