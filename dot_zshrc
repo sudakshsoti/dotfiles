@@ -112,6 +112,19 @@ wtdone() {
     && echo "Removed worktree $wt and branch $branch"
 }
 
+# transcribe <video/audio> [format] — local Whisper on the Apple GPU (mlx-whisper, large-v3-turbo)
+#   format defaults to txt; pass srt / vtt / all for subtitles. Output lands next to the input file.
+transcribe() {
+  emulate -L zsh
+  local input="$1" fmt="${2:-txt}"
+  [[ -z "$input" ]] && { echo "usage: transcribe <video-or-audio-file> [txt|srt|vtt|all]"; return 1; }
+  [[ -f "$input" ]] || { echo "transcribe: no such file: $input" >&2; return 1; }
+  ~/.local/bin/mlx_whisper "$input" \
+    --model mlx-community/whisper-large-v3-turbo \
+    --output-format "$fmt" \
+    --output-dir "${input:h}"
+}
+
 # ============================================================
 # eza (ls replacement)
 # ============================================================
