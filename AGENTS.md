@@ -86,6 +86,7 @@ Secrets are encrypted with [age](https://github.com/FiloSottile/age) so the publ
 - `~/.config/chezmoi/chezmoi.toml` (generated from `.chezmoi.toml.tmpl`, local) sets `encryption = "age"` with the identity at `~/.config/chezmoi/key.txt` and the recipient public key.
 - The age **identity** (`key.txt`) is the only secret carried between machines — backed up in Bitwarden (note "chezmoi age key"). Restore it (chmod 600) before `chezmoi apply` on a new machine.
 - Encrypted blobs live in the source dir with a leading `.` (e.g. `.zedGoogleApiKey.age`) so chezmoi treats them as data, not target files. They are ASCII-armored and safe to publish.
+- A whole config file can instead be encrypted *and deployed* via chezmoi's native `encrypted_` attribute: `dot_config/opencode/encrypted_opencode.json.age` decrypts straight to the target `~/.config/opencode/opencode.json` (it carries the Context7 + Supabase MCP keys). This is the **same** age key as everything else — there is no separate "opencode key". On a new machine it stays ciphertext until `~/.config/chezmoi/key.txt` is restored from Bitwarden (the `chezmoi age key` note) before `chezmoi apply`; the restore step above covers it.
 
 To add a new secret:
 ```bash
