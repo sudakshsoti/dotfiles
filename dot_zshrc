@@ -65,6 +65,7 @@ alias d="npm run dev"
 alias la="ls -A"
 alias reload="source ~/.zshrc"
 alias c="claude --permission-mode auto"
+alias cyolo="codex --yolo"
 
 # ask [prompt] — general / Mac / Q&A session in ~/assistant (shares home's personal memory)
 ask() { (cd ~/assistant && claude --permission-mode auto "$@"); }
