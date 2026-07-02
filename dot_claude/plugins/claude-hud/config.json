@@ -1,0 +1,25 @@
+{
+  "display": {
+    "sevenDayThreshold": 100,
+    "usageThreshold": 50,
+    "contextWarningThreshold": 60,
+    "contextCriticalThreshold": 80,
+    "showPromptCache": true,
+    "promptCacheTtlSeconds": 3600,
+    "showCompactions": true,
+    "showLastResponseAt": true,
+    "showAgents": true
+  },
+  "colors": {
+    "context": "#65c1b5",
+    "usage": "#65c1b5",
+    "warning": "#d2a56d",
+    "usageWarning": "#d2a56d",
+    "critical": "#d9695e",
+    "model": "#76b6e1",
+    "project": "#d3d8da",
+    "git": "#a86893",
+    "gitBranch": "#d598c0",
+    "label": "#828689"
+  }
+}
