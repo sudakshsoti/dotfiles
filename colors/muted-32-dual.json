@@ -1,0 +1,363 @@
+{
+  "count": 32,
+  "min_deltaE": 0.053,
+  "apca_floor": 29.0,
+  "backgrounds": {
+    "light": "#CFCFD1",
+    "dark": "#1D1D1F"
+  },
+  "colors": [
+    {
+      "name": "red",
+      "hex": "#A9818C",
+      "oklch": [
+        0.644,
+        0.051,
+        0.9
+      ],
+      "Lc_light": 34,
+      "Lc_dark": 39
+    },
+    {
+      "name": "red 2",
+      "hex": "#B7647C",
+      "oklch": [
+        0.605,
+        0.11,
+        2.7
+      ],
+      "Lc_light": 40,
+      "Lc_dark": 32
+    },
+    {
+      "name": "soft red",
+      "hex": "#D17B90",
+      "oklch": [
+        0.681,
+        0.109,
+        4.8
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "coral",
+      "hex": "#9F6E6D",
+      "oklch": [
+        0.588,
+        0.063,
+        20.5
+      ],
+      "Lc_light": 42,
+      "Lc_dark": 30
+    },
+    {
+      "name": "rust",
+      "hex": "#BC6958",
+      "oklch": [
+        0.61,
+        0.11,
+        32.7
+      ],
+      "Lc_light": 39,
+      "Lc_dark": 33
+    },
+    {
+      "name": "soft rust",
+      "hex": "#D27D69",
+      "oklch": [
+        0.676,
+        0.11,
+        34.2
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "soft amber",
+      "hex": "#B28C70",
+      "oklch": [
+        0.67,
+        0.061,
+        57.9
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "deep gold",
+      "hex": "#A46B32",
+      "oklch": [
+        0.577,
+        0.103,
+        63.6
+      ],
+      "Lc_light": 43,
+      "Lc_dark": 29
+    },
+    {
+      "name": "gold",
+      "hex": "#B67F38",
+      "oklch": [
+        0.638,
+        0.11,
+        70.0
+      ],
+      "Lc_light": 34,
+      "Lc_dark": 38
+    },
+    {
+      "name": "gold 2",
+      "hex": "#977F63",
+      "oklch": [
+        0.612,
+        0.05,
+        70.2
+      ],
+      "Lc_light": 38,
+      "Lc_dark": 34
+    },
+    {
+      "name": "citron",
+      "hex": "#968132",
+      "oklch": [
+        0.607,
+        0.101,
+        94.4
+      ],
+      "Lc_light": 38,
+      "Lc_dark": 34
+    },
+    {
+      "name": "soft lime",
+      "hex": "#9C965F",
+      "oklch": [
+        0.665,
+        0.076,
+        103.6
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "deep moss",
+      "hex": "#747E27",
+      "oklch": [
+        0.566,
+        0.11,
+        115.5
+      ],
+      "Lc_light": 43,
+      "Lc_dark": 29
+    },
+    {
+      "name": "green",
+      "hex": "#709550",
+      "oklch": [
+        0.626,
+        0.106,
+        131.9
+      ],
+      "Lc_light": 34,
+      "Lc_dark": 38
+    },
+    {
+      "name": "deep green",
+      "hex": "#4E874E",
+      "oklch": [
+        0.57,
+        0.105,
+        144.1
+      ],
+      "Lc_light": 42,
+      "Lc_dark": 31
+    },
+    {
+      "name": "green 2",
+      "hex": "#6C886D",
+      "oklch": [
+        0.598,
+        0.051,
+        145.8
+      ],
+      "Lc_light": 39,
+      "Lc_dark": 34
+    },
+    {
+      "name": "soft emerald",
+      "hex": "#59A37D",
+      "oklch": [
+        0.655,
+        0.094,
+        160.2
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "deep teal",
+      "hex": "#01876F",
+      "oklch": [
+        0.556,
+        0.105,
+        174.7
+      ],
+      "Lc_light": 43,
+      "Lc_dark": 29
+    },
+    {
+      "name": "teal",
+      "hex": "#24988D",
+      "oklch": [
+        0.614,
+        0.099,
+        186.0
+      ],
+      "Lc_light": 35,
+      "Lc_dark": 37
+    },
+    {
+      "name": "aqua",
+      "hex": "#699A95",
+      "oklch": [
+        0.649,
+        0.053,
+        188.1
+      ],
+      "Lc_light": 31,
+      "Lc_dark": 41
+    },
+    {
+      "name": "deep cyan",
+      "hex": "#058591",
+      "oklch": [
+        0.564,
+        0.096,
+        206.4
+      ],
+      "Lc_light": 42,
+      "Lc_dark": 30
+    },
+    {
+      "name": "cyan",
+      "hex": "#24A1B2",
+      "oklch": [
+        0.653,
+        0.105,
+        208.9
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "sky",
+      "hex": "#5A849C",
+      "oklch": [
+        0.592,
+        0.059,
+        234.3
+      ],
+      "Lc_light": 40,
+      "Lc_dark": 32
+    },
+    {
+      "name": "azure",
+      "hex": "#4598C9",
+      "oklch": [
+        0.649,
+        0.109,
+        238.4
+      ],
+      "Lc_light": 31,
+      "Lc_dark": 41
+    },
+    {
+      "name": "deep blue",
+      "hex": "#527ABB",
+      "oklch": [
+        0.58,
+        0.11,
+        259.4
+      ],
+      "Lc_light": 42,
+      "Lc_dark": 30
+    },
+    {
+      "name": "soft indigo",
+      "hex": "#7992D8",
+      "oklch": [
+        0.669,
+        0.109,
+        268.6
+      ],
+      "Lc_light": 29,
+      "Lc_dark": 43
+    },
+    {
+      "name": "violet",
+      "hex": "#8986AC",
+      "oklch": [
+        0.637,
+        0.057,
+        288.3
+      ],
+      "Lc_light": 34,
+      "Lc_dark": 38
+    },
+    {
+      "name": "deep violet",
+      "hex": "#7E6DB5",
+      "oklch": [
+        0.581,
+        0.11,
+        294.0
+      ],
+      "Lc_light": 43,
+      "Lc_dark": 29
+    },
+    {
+      "name": "purple",
+      "hex": "#937FC8",
+      "oklch": [
+        0.644,
+        0.11,
+        295.9
+      ],
+      "Lc_light": 34,
+      "Lc_dark": 38
+    },
+    {
+      "name": "soft plum",
+      "hex": "#B77FBE",
+      "oklch": [
+        0.675,
+        0.109,
+        322.9
+      ],
+      "Lc_light": 30,
+      "Lc_dark": 42
+    },
+    {
+      "name": "deep plum",
+      "hex": "#8E6F8F",
+      "oklch": [
+        0.582,
+        0.06,
+        325.5
+      ],
+      "Lc_light": 42,
+      "Lc_dark": 30
+    },
+    {
+      "name": "magenta",
+      "hex": "#A9699E",
+      "oklch": [
+        0.608,
+        0.108,
+        333.0
+      ],
+      "Lc_light": 40,
+      "Lc_dark": 33
+    }
+  ]
+}
