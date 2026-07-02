@@ -4,8 +4,13 @@
 	process = git-lfs filter-process
 	required = true
 [user]
+{{- if eq .machine "work" }}
+	name = {{ .workGitName }}
+	email = {{ .workGitEmail }}
+{{- else }}
 	name = Sudaksh Soti
 	email = sudaksh.soti@gmail.com
+{{- end }}
 
 # --- delta: everyday pager for git diff / show / log -p ---
 [core]

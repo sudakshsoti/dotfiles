@@ -1,9 +1,11 @@
 # ============================================================
 # PATH
 # ============================================================
-export PATH="/Users/sudakshsoti/.opencode/bin:$PATH"
-export PATH="/Users/sudakshsoti/.antigravity/antigravity/bin:$PATH"
-export PATH="$PATH:/Users/sudakshsoti/.local/bin"
+export PATH="$HOME/.opencode/bin:$PATH"
+{{- if eq .chezmoi.os "darwin" }}
+export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+{{- end }}
+export PATH="$PATH:$HOME/.local/bin"
 
 # ============================================================
 # Prompt
@@ -42,10 +44,14 @@ alias pip='pip3'
 # ============================================================
 # Editor
 # ============================================================
+{{- if eq .chezmoi.os "darwin" }}
 export EDITOR="subl -w"
+{{- else }}
+export EDITOR="vim"
+{{- end }}
 export VISUAL="$EDITOR"
 
-# ============================================================
+{{ if ne .machine "server" }}# ============================================================
 # Homelab
 # ============================================================
 alias homelab="ssh homelab"
@@ -54,12 +60,14 @@ alias homelab-logs="ssh homelab 'cd /opt/stacks && docker compose logs -f'"
 alias hlvitals="ssh homelab vitals"
 alias hldiag="ssh homelab diag-play"
 alias hldf="ssh homelab 'df -h / /mnt/HC_Volume_105268540 && docker system df'"
-alias hlps="ssh homelab 'docker ps --format \"table {{.Names}}\t{{.Status}}\"'"
+alias hlps="ssh homelab 'docker ps --format \"table {{ "{{.Names}}" }}\t{{ "{{.Status}}" }}\"'"
 
-# ============================================================
+{{ end }}# ============================================================
 # General
 # ============================================================
+{{- if eq .chezmoi.os "darwin" }}
 alias t="open -a Ghostty"
+{{- end }}
 alias bupdate="brew update && brew upgrade && brew cleanup --prune=all"
 alias d="npm run dev"
 alias la="ls -A"
@@ -209,11 +217,11 @@ eval "$(starship init zsh)"
 # zsh plugins
 # Order matters: autosuggestions → history-substring-search → syntax-highlighting (last)
 # ============================================================
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+source "$(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+source "$(brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh"
 bindkey '^[[A' history-substring-search-up
 bindkey '^[[B' history-substring-search-down
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
 
 # ============================================================
 # zoxide (must be initialized last — hooks chpwd, not ZLE)

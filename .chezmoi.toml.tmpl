@@ -2,8 +2,26 @@
 # `chezmoi init`. The recipient below is a PUBLIC age key — safe to commit.
 # The matching PRIVATE key lives only in your Bitwarden note "chezmoi age key"
 # and must be restored to ~/.config/chezmoi/key.txt before `chezmoi apply`.
+#
+# `machine` distinguishes the three boxes this repo is applied to:
+# personal macOS, work macOS (restricted), and the Hetzner server (headless
+# Linux). It gates identity (git email) and account-specific config. Pure
+# OS/platform differences (GUI apps that don't exist on Linux) are instead
+# gated on the built-in .chezmoi.os — see .chezmoiignore.
+{{- $machine := promptChoiceOnce . "machine" "Which machine is this (personal/work/server)" (list "personal" "work" "server") "personal" }}
+{{- $workGitName := "" }}
+{{- $workGitEmail := "" }}
+{{- if eq $machine "work" }}
+{{-   $workGitName = promptStringOnce . "workGitName" "Work git user.name" "Sudaksh Soti" }}
+{{-   $workGitEmail = promptStringOnce . "workGitEmail" "Work git user.email" "" }}
+{{- end }}
 
 encryption = "age"
+
+[data]
+    machine = {{ $machine | quote }}
+    workGitName = {{ $workGitName | quote }}
+    workGitEmail = {{ $workGitEmail | quote }}
 
 [age]
     identity = "~/.config/chezmoi/key.txt"

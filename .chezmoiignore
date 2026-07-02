@@ -10,3 +10,12 @@ colors
 
 # Retired configs kept for reference only — not deployed to the home dir.
 archive
+
+{{ if ne .chezmoi.os "darwin" -}}
+# Non-macOS (the headless Hetzner server): skip macOS-only GUI app configs.
+.config/ghostty
+.config/herdr
+.config/zed
+.cursor
+Library
+{{ end -}}
