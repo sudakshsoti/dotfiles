@@ -135,6 +135,12 @@ transcribe() {
 }
 
 # ============================================================
+# workmux — parallel git-worktree + tmux + Claude Code sessions
+# ============================================================
+alias wm='tmux new-session -A -s work'
+eval "$(workmux completions zsh)"
+
+# ============================================================
 # eza (ls replacement)
 # ============================================================
 alias ls="eza --group-directories-first --icons=auto"

@@ -164,6 +164,8 @@ bw get template item \
 | `dot_config/ghostty/` | `~/.config/ghostty/` | Ghostty terminal + themes |
 | `dot_config/starship.toml` | `~/.config/...` | **Starship** prompt, inside **Ghostty** by default |
 | `dot_config/herdr/` | `~/.config/herdr/` | optional Herdr multiplexer config for Ghostty or WezTerm |
+| `dot_tmux.conf` | `~/.tmux.conf` | tmux config for **workmux** — parallel Claude Code sessions across git worktrees |
+| `dot_config/workmux/` | `~/.config/workmux/` | workmux global config (agent, panes, sidebar) |
 | `dot_config/opencode/` | `~/.config/opencode/` | opencode agent — `AGENTS.md` + age-**encrypted** `opencode.json` (MCP keys); same key as everything else |
 | `dot_cursor/` | `~/.cursor/` | Cursor editor extensions (theme packages) |
 | `private_Library/` | `~/Library/` | Sublime Text settings & themes |

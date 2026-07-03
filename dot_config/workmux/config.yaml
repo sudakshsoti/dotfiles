@@ -1,0 +1,10 @@
+nerdfont: true
+agent: claude
+
+panes:
+  - command: <agent>
+    focus: true
+
+sidebar:
+  position: left
+  width: 35
